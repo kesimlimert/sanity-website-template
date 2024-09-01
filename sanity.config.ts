@@ -12,6 +12,11 @@ import {structureTool} from 'sanity/structure'
 import {apiVersion, dataset, projectId} from './sanity/env'
 import {schema} from './sanity/schemaTypes'
 import {structure} from './sanity/structure'
+import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
+import { table } from "@sanity/table";
+import { codeInput } from "@sanity/code-input";
+import { singletonPlugin } from "./sanity/plugins/settings";
+import settings from "./sanity/schemaTypes/settings";
 
 export default defineConfig({
   basePath: '/studio',
@@ -24,5 +29,9 @@ export default defineConfig({
     // Vision is for querying with GROQ from inside the Studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({defaultApiVersion: apiVersion}),
+    singletonPlugin(["settings"]),
+    unsplashImageAsset(),
+    table(),
+    codeInput()
   ],
 })

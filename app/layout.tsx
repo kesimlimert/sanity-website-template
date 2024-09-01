@@ -1,9 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import { Inter, Lora } from "next/font/google";
+import { cx } from "@/utils/all";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter"
+});
+
+const lora = Lora({
+  subsets: ["latin"],
+  variable: "--font-lora"
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,8 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html  suppressHydrationWarning lang="en">
+      <body className={cx(inter.variable, lora.variable)}>
         <Providers>
           {children}
         </Providers>

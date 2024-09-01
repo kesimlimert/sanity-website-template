@@ -10,15 +10,21 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.4.6",
+    "@sanity/code-input": "^4.1.4",
     "@sanity/icons": "^3.4.0",
     "@sanity/image-url": "^1.0.2",
+    "@sanity/table": "^1.1.2",
     "@sanity/vision": "^3.56.0",
+    "@tabler/icons-react": "^3.14.0",
     "framer-motion": "^11.3.31",
     "next": "14.2.7",
     "next-sanity": "^9.4.7",
+    "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-iframe": "^1.8.5",
     "sanity": "^3.56.0",
+    "sanity-plugin-asset-source-unsplash": "^3.0.1",
     "styled-components": "^6.1.12"
   },
   "devDependencies": {
