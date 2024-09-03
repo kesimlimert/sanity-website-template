@@ -16,7 +16,7 @@ import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
 import { table } from "@sanity/table";
 import { codeInput } from "@sanity/code-input";
 import { singletonPlugin } from "./sanity/plugins/settings";
-import settings from "./sanity/schemaTypes/settings";
+
 
 export default defineConfig({
   basePath: '/studio',

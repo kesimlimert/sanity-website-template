@@ -5,7 +5,10 @@ import category from './category'
 import post from './post'
 import author from './author'
 import settings from './settings'
+import gallery from './gallery'
+import page from './page'
+import pageTexts from './pageTexts'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [blockContent, category, post, author, settings],
+  types: [blockContent, category, post, author, settings, gallery, page, pageTexts],
 }

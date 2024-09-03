@@ -25,6 +25,7 @@
     "react-iframe": "^1.8.5",
     "sanity": "^3.56.0",
     "sanity-plugin-asset-source-unsplash": "^3.0.1",
+    "sanity-plugin-iframe-pane": "^3.1.6",
     "styled-components": "^6.1.12"
   },
   "devDependencies": {
