@@ -1,7 +1,7 @@
 export default {
 	name: 'pageTexts',
 	title: 'Page Texts',
-	type: 'document',
+	type: 'object',
 	description: 'Write text blocks for pages',
 	fields: [
 	  {

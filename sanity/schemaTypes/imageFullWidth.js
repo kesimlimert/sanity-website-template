@@ -1,8 +1,8 @@
 export default {
-	name: 'gallery',
-	title: 'Image Gallery',
-	type: 'document',
-	description: 'Add image to use in pages',
+	name: 'imageFullWidth',
+	title: 'Image Full Width',
+	type: 'object',
+	description: 'Image that spans the full width of the page',
 	fields: [
 		{
 			name: "title",
