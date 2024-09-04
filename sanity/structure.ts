@@ -16,7 +16,7 @@ export const structure: StructureResolver = (S) =>
               S.documentTypeListItem('author').title('Authors'),
               S.divider(),
               ...S.documentTypeListItems().filter(
-                (item) => item.getId() && !['post', 'category', 'author','aboutUs','contactUs','settings','homePage', 'navbar'].includes(item.getId()!),
+                (item) => item.getId() && !['post', 'category', 'author','aboutUs','contactUs','settings','homePage', 'navbar','footer'].includes(item.getId()!),
               ),
             ])
         ),
@@ -31,6 +31,7 @@ export const structure: StructureResolver = (S) =>
               S.documentTypeListItem('contactUs').title('Contact Us'),
               S.divider(),
               S.documentTypeListItem('navbar').title('Website Navigation'),
+              S.documentTypeListItem('footer').title('Footer'),
               S.documentTypeListItem('settings').title('Site settings'),
             ])
         ),

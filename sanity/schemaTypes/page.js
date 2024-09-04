@@ -23,23 +23,21 @@ export default {
       type: "array",
       of: [
         {
-          name: "authorsReferences",
-          type: "reference",
-          to: [{ type: "author" }],
-        },
-        {
           name: "categoryReferences",
           type: "reference",
+		  title: "Categories",
           to: [{ type: "category" }],
         },
         {
           name: "postReferences",
           type: "reference",
+		  title: "Single Posts",
           to: [{ type: "post" }],
         },
         {
           name: "videoReferences",
           type: "reference",
+		  title: "Single Video",
           to: [{ type: "video" }],
         },
         { type: "imageFullWidth" },

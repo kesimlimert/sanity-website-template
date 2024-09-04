@@ -42,7 +42,7 @@ export default {
       title: "Telephone Number",
       description: "Contact telephone number",
       validation: (Rule) =>
-        Rule.regex(/^\+?[1-9]\d{1,14}$/, {
+        Rule.regex(/^\+?[0-9]\d{1,14}$/, {
           name: "telephone",
           invert: false,
         }).error("Invalid telephone number"),

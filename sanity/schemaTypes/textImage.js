@@ -69,7 +69,7 @@ export default {
           name: "buttonLink",
           type: "reference",
           title: "Button Link",
-          to: [{ type: "page" }],
+		  to: [{ type: 'page' }, { type: 'aboutUs' }, { type: 'contactUs' }],
         },
       ],
     },
