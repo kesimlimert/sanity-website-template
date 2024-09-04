@@ -4,35 +4,19 @@ export default {
   title: "Navbar",
   fields: [
     {
-      name: "navItems",
+      name: "title",
+      type: "string",
+      title: "Title",
+      description: "Title of the navigation item",
+    },
+    {
+      name: "pageReferences",
       type: "array",
-      title: "Navigation Items",
+      title: "Page References",
       of: [
         {
-          type: "object",
-          fields: [
-            {
-              name: "title",
-              type: "string",
-              title: "Title",
-              description: "Title of the navigation item",
-            },
-            {
-              name: "pageReferences",
-              type: "array",
-              title: "Page References",
-              of: [
-                {
-                  type: "reference",
-                  to: [
-                    { type: "page" },
-                    { type: "contactUs" },
-                    { type: "aboutUs" },
-                  ],
-                },
-              ],
-            },
-          ],
+          type: "reference",
+          to: [{ type: "page" }, { type: "contactUs" }, { type: "aboutUs" }],
         },
       ],
     },
