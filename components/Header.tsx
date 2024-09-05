@@ -18,15 +18,17 @@ import Image from "next/image";
 import { urlForImage } from "@/sanity/lib/image";
 import { useState } from "react";
 import { IconChevronDown } from "@tabler/icons-react";
+import navbar from "@/sanity/schemaTypes/navbar";
 
 type Props = {
   logo?: string;
   servicesMenu: any;
+  navbarMenu: any;
 };
 
-export function Header({ logo, servicesMenu }: Props) {
+export function Header({ logo, servicesMenu, navbarMenu }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  console.log(servicesMenu);
+  const navbarItems = navbarMenu.pageReferences;
   const { src, width, height, alt } = urlForImage(logo) ?? {
     src: "",
     width: 0,
@@ -102,7 +104,7 @@ export function Header({ logo, servicesMenu }: Props) {
                 radius="sm"
                 variant="light"
               >
-                Services
+                <p className="text-medium">Services</p>
               </Button>
             </DropdownTrigger>
           </NavbarItem>
@@ -119,21 +121,13 @@ export function Header({ logo, servicesMenu }: Props) {
             ))}
           </DropdownMenu>
         </Dropdown>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page">
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
-          </Link>
-        </NavbarItem>
+        { navbarMenu && navbarItems.map((item: any, index: number) => (
+          <NavbarItem key={index}>
+            <Link color="foreground" href={"/" + item.slug}>
+              {item.title}
+            </Link>
+          </NavbarItem>
+        ))}
       </NavbarContent>
       <NavbarMenu>
         {menuItems.map((item, index) => (

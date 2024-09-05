@@ -16,6 +16,12 @@ export default {
       description: "Toggle to display or hide the content text block",
     },
     {
+      name: "contentTextBlock",
+      type: "contentTextBlock",
+      title: "Content Text Block",
+      hidden: ({ parent }) => !parent.displayContentTextBlock,
+    },
+    {
       name: "cards",
       type: "array",
       title: "Cards",

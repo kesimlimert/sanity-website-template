@@ -1,10 +1,14 @@
 // app/page.tsx
-import {Button} from '@nextui-org/button'; 
+import { BlockRenderer } from "@/components/BlockRenderer";
+import { getHomepage } from "@/sanity/lib/client";
 
-export default function Page() {
+export default async function Page() {
+  const homePage = await getHomepage();
+  const content = homePage?.content;
+
   return (
     <div>
-      <Button color='primary'>Click me</Button>
+      <BlockRenderer content={content} />
     </div>
-  )
+  );
 }

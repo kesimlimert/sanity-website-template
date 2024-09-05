@@ -1,7 +1,7 @@
 export default {
 	name: 'brandImage',
-	type: 'object',
-	title: 'Brand Image',
+	type: 'document',
+	title: 'Brands',
 	fields: [
 	  {
 		name: 'image',

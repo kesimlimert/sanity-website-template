@@ -4,6 +4,24 @@ export default {
   title: "Text with Image",
   fields: [
     {
+      name: "displayContentTextBlock",
+      type: "boolean",
+      title: "Display Content Text Block",
+      description: "Toggle to display or hide the content text block",
+    },
+    {
+      name: "contentTextBlock",
+      type: "contentTextBlock",
+      title: "Content Text Block",
+      hidden: ({ parent }) => !parent.displayContentTextBlock,
+    },
+    {
+      name: "title",
+      type: "string",
+      title: "Title",
+      description: "Title of the text and image section",
+    },
+    {
       name: "image",
       type: "image",
       title: "Image",
@@ -69,7 +87,7 @@ export default {
           name: "buttonLink",
           type: "reference",
           title: "Button Link",
-		  to: [{ type: 'page' }, { type: 'aboutUs' }, { type: 'contactUs' }],
+          to: [{ type: "page" }, { type: "aboutUs" }, { type: "contactUs" }],
         },
       ],
     },

@@ -13,8 +13,9 @@ import {
   catpathquery,
   catquery,
   getAll,
-  searchquery,
   servicesnavquery,
+  navbarmenuquery,
+  homepagequery,
 } from "./groq";
 import { createClient } from "next-sanity";
 
@@ -75,12 +76,6 @@ export async function getAllPostsSlugs() {
   return [];
 }
 
-export async function getAllPostsServicesMenu() {
-  if (client) {
-    return (await client.fetch(servicesnavquery)) || [];
-  }
-  return [];
-}
 // Author
 export async function getAllAuthorsSlugs() {
   if (client) {
@@ -102,6 +97,31 @@ export async function getAllAuthors() {
     return (await client.fetch(allauthorsquery)) || [];
   }
   return [];
+}
+
+// Navbar
+
+export async function getAllPostsServicesMenu() {
+  if (client) {
+    return (await client.fetch(servicesnavquery)) || [];
+  }
+  return [];
+}
+
+export async function getNavbarMenu() {
+  if (client) {
+    return (await client.fetch(navbarmenuquery)) || [];
+  }
+  return [];
+}
+
+// Homepage
+
+export async function getHomepage() {
+  if (client) {
+    return (await client.fetch(homepagequery)) || {};
+  }
+  return {};
 }
 
 // Category

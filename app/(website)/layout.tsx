@@ -1,4 +1,4 @@
-import { getSettings, getAllPostsServicesMenu } from "@/sanity/lib/client";
+import { getSettings, getAllPostsServicesMenu, getNavbarMenu } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Params from "next/router";
 import { Header } from "@/components/Header";
@@ -39,10 +39,11 @@ export default async function Layout({
 
   const settings = await getSettings();
   const servicesMenu = await getAllPostsServicesMenu();
+  const navbarMenu = await getNavbarMenu();
   
   return (
     <>
-      <Header logo={settings.logo} servicesMenu={servicesMenu}  />
+      <Header logo={settings.logo} servicesMenu={servicesMenu} navbarMenu={navbarMenu}  />
 
       <div>{children}</div>
 

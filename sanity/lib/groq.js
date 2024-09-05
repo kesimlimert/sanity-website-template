@@ -137,6 +137,33 @@ export const allauthorsquery = groq`
 }
 `;
 
+// Get page title and slug from navbar
+export const navbarmenuquery = groq`
+*[_type == "navbar"][0] {
+  title,
+  "pageReferences": pageReferences[]->{
+    title,
+    "slug": slug.current
+  }
+}
+`;
+
+// Home Page
+
+export const homepagequery = groq`
+*[_type == "homePage"][0] {
+  ...,
+  content[] {
+    ...,
+    _type == "reference" => @->{
+      title,
+      "slug": slug.current
+    }
+  }
+}
+`;
+
+
 // get everything from sanity
 // to test connection
 export const getAll = groq`*[]`;
