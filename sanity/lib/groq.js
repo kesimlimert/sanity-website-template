@@ -141,6 +141,7 @@ export const allauthorsquery = groq`
 export const navbarmenuquery = groq`
 *[_type == "navbar"][0] {
   title,
+  hideDropdown,
   "pageReferences": pageReferences[]->{
     title,
     "slug": slug.current
@@ -158,6 +159,16 @@ export const homepagequery = groq`
     _type == "reference" => @->{
       title,
       "slug": slug.current
+    },
+    _type == "textImage" => {
+      ...,
+      button {
+        buttonText,
+        buttonLink->{
+          title,
+          "slug": slug.current
+        }
+      }
     }
   }
 }

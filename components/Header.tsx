@@ -18,7 +18,7 @@ import Image from "next/image";
 import { urlForImage } from "@/sanity/lib/image";
 import { useState } from "react";
 import { IconChevronDown } from "@tabler/icons-react";
-import navbar from "@/sanity/schemaTypes/navbar";
+import { useRouter } from "next/navigation";
 
 type Props = {
   logo?: string;
@@ -28,6 +28,7 @@ type Props = {
 
 export function Header({ logo, servicesMenu, navbarMenu }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
   const navbarItems = navbarMenu.pageReferences;
   const { src, width, height, alt } = urlForImage(logo) ?? {
     src: "",
@@ -36,18 +37,9 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
     alt: "",
   };
 
-  const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
-  ];
+  const handleNavigation = (slug: string) => {
+    router.push("/" + slug);
+  };
 
   return (
     <Navbar
@@ -55,6 +47,7 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
       onMenuOpenChange={setIsMenuOpen}
       isBlurred={false}
       shouldHideOnScroll
+      maxWidth="xl"
     >
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle
@@ -94,60 +87,74 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
             </div>
           )}
         </NavbarBrand>
-        <Dropdown>
-          <NavbarItem>
-            <DropdownTrigger>
-              <Button
-                disableRipple
-                className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-                endContent={<IconChevronDown stroke={2} />}
-                radius="sm"
-                variant="light"
-              >
-                <p className="text-medium">Services</p>
-              </Button>
-            </DropdownTrigger>
-          </NavbarItem>
-          <DropdownMenu
-            className="w-[340px]"
-            itemClasses={{
-              base: "gap-4",
-            }}
-          >
-            {servicesMenu && servicesMenu.map((item: any, index: number) => (
-              <DropdownItem key={index}>
+        {!navbarMenu?.hideDropdown && (
+          <Dropdown>
+            <NavbarItem>
+              <DropdownTrigger>
+                <Button
+                  disableRipple
+                  className="p-0 bg-transparent data-[hover=true]:bg-transparent"
+                  endContent={<IconChevronDown stroke={2} />}
+                  radius="sm"
+                  variant="light"
+                >
+                  <p className="text-medium">{navbarMenu?.title}</p>
+                </Button>
+              </DropdownTrigger>
+            </NavbarItem>
+            <DropdownMenu
+              className="w-[340px]"
+              itemClasses={{
+                base: "gap-4",
+              }}
+            >
+              {servicesMenu &&
+                servicesMenu.map((item: any, index: number) => (
+                  <DropdownItem
+                    onClick={() => handleNavigation(item.slug)}
+                    key={index}
+                  >
+                    {item.title}
+                  </DropdownItem>
+                ))}
+            </DropdownMenu>
+          </Dropdown>
+        )}
+        {navbarMenu &&
+          navbarItems.map((item: any, index: number) => (
+            <NavbarItem key={index}>
+              <Link color="foreground" href={"/" + item.slug}>
                 {item.title}
-              </DropdownItem>
-            ))}
-          </DropdownMenu>
-        </Dropdown>
-        { navbarMenu && navbarItems.map((item: any, index: number) => (
-          <NavbarItem key={index}>
-            <Link color="foreground" href={"/" + item.slug}>
-              {item.title}
-            </Link>
-          </NavbarItem>
-        ))}
+              </Link>
+            </NavbarItem>
+          ))}
       </NavbarContent>
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
+        {servicesMenu?.map((item: any, index: number) => (
+          <NavbarMenuItem key={index}>
             <Link
               className="w-full"
-              color={
-                index === 2
-                  ? "warning"
-                  : index === menuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-              }
-              href="#"
+              color={"foreground"}
+              href={"/" + item.slug}
               size="lg"
             >
-              {item}
+              {item.title}
             </Link>
           </NavbarMenuItem>
         ))}
+        {navbarMenu &&
+          navbarItems.map((item: any, index: number) => (
+            <NavbarMenuItem key={index}>
+              <Link
+                className="w-full"
+                color={"foreground"}
+                href={"/" + item.slug}
+                size="lg"
+              >
+                {item.title}
+              </Link>
+            </NavbarMenuItem>
+          ))}
       </NavbarMenu>
     </Navbar>
   );

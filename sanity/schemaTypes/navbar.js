@@ -7,7 +7,13 @@ export default {
       name: "title",
       type: "string",
       title: "Title",
-      description: "Title of the navigation item",
+      description: "Give a name for dropdown menu item",
+    },
+    {
+      name: "hideDropdown",
+      type: "boolean",
+      title: "Hide Dropdown",
+      description: "Toggle to hide or show the dropdown menu",
     },
     {
       name: "pageReferences",
