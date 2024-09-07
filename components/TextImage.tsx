@@ -10,7 +10,6 @@ type Props = {
 };
 
 export function TextImage({ data }: Props) {
-  console.log(data);
   const { src, width, height, alt } = urlForImage(data.image) ?? {
     src: "",
     width: 0,
@@ -24,7 +23,7 @@ export function TextImage({ data }: Props) {
         <ContentTextBlock texts={data?.contentTextBlock} />
       )}
       <div
-        className={`container flex justify-center items-center ${data?.image?.position === "right" ? `flex-row-reverse` : ``} ${fullWidth ? `max-w-screen-xl p-8 my-10` : `max-w-4xl p-4`} m-auto my-10`}
+        className={`container flex justify-center items-center ${data?.image?.position === "right" ? `flex-row-reverse` : ``} ${fullWidth ? `max-w-screen-xl p-8` : `max-w-5xl p-4`} m-auto my-16`}
       >
         <div className="flex-1">
           <Image
@@ -54,7 +53,9 @@ export function TextImage({ data }: Props) {
             <div className="pt-4">
               {data?.list.map((item: any, index: number) => (
                 <div key={index} className="flex gap-2 pt-4">
-                  <IconCircleCheck size={24} color="#7e22ce" stroke={2} />
+                  {data?.showIcons && (
+                    <IconCircleCheck size={24} color="#7e22ce" stroke={2} />
+                  )}
                   <p>{item}</p>
                 </div>
               ))}

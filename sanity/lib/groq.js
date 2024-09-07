@@ -169,6 +169,15 @@ export const homepagequery = groq`
           "slug": slug.current
         }
       }
+    },
+    _type == "brandsList" => {
+      ...,
+      brandImages[]->{
+        _id,
+        _type,
+        image,
+        alt
+      }
     }
   }
 }
