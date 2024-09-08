@@ -31,9 +31,10 @@ This project is an agency landing page built with Next.js and Sanity, designed t
 6. **ImageGallery**: To display desired image gallery collection in page
 7. **PageTexts**: To display side by side image and text. Image postion, adding list and button optional.
 8. **VideoReferences**: To add video source (youtube, vimeo... etc)
+\
+![screenshot1](https://res.cloudinary.com/dfatlyafz/image/upload/v1725792726/tefvl40gooh2isdpw4z0.png)
 
-![screenshot]([http://url/to/img.png](https://console.cloudinary.com/pm/c-5e4e917b2772e94beb3c441f0f3492/media-explorer?assetId=8e722125aa4e3b5aa3cdfb62d217d929))
-![screenshot2]([[http://url/to/img.png](https://console.cloudinary.com/pm/c-5e4e917b2772e94beb3c441f0f3492/media-explorer?assetId=8e722125aa4e3b5aa3cdfb62d217d929](https://res.cloudinary.com/dfatlyafz/image/upload/v1725792726/hafxpn3qwcpljisu6qu2.png)))
+![screenshot1](https://res.cloudinary.com/dfatlyafz/image/upload/v1725792726/hafxpn3qwcpljisu6qu2.png)
 
 ## Getting Started
 To run project successfully on local follow steps below.
