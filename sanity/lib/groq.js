@@ -178,7 +178,24 @@ export const homepagequery = groq`
         image,
         alt
       }
-    }
+    },
+    _type == "videoReferences" => @->{
+      _id,
+      displayContentTextBlock,
+      contentTextBlock,
+      videoSource,
+      description,
+    },
+     _type == "testimonialList" => {
+      ...,
+      testimonialReferences[]-> {
+        _id,
+        title,
+        comment,
+        authorName,
+        authorJobTitle,
+      },
+    },
   }
 }
 `;

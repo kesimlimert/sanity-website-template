@@ -7,7 +7,7 @@ export default {
 		name: 'title',
 		type: 'string',
 		title: 'Title',
-		description: 'Title of the FAQ list document',
+		description: 'Title of the Testimonial list document',
 	  },
 	  {
 		name: 'displayContentTextBlock',
@@ -22,7 +22,7 @@ export default {
 		hidden: ({ parent }) => !parent.displayContentTextBlock,
 	  },
 	  {
-		name: 'faqReferences',
+		name: 'testimonialReferences',
 		type: 'array',
 		title: 'Testimonial References',
 		of: [{ type: 'reference', to: [{ type: 'testimonial' }] }],
