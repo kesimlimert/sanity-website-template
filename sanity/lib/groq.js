@@ -184,6 +184,7 @@ export const homepagequery = groq`
       displayContentTextBlock,
       contentTextBlock,
       videoSource,
+      title,
       description,
     },
      _type == "testimonialList" => {

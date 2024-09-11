@@ -22,6 +22,12 @@ export default {
       description: "URL of the video",
     },
     {
+      name: "title",
+      type: "string",
+      title: "Video Title",
+      description: "Title of the video",
+    },
+    {
       name: "description",
       type: "string",
       title: "Description",
