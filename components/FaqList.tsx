@@ -21,7 +21,6 @@ type Props = {
 };
 
 export function FaqList({ data }: Props) {
-  console.log(data);
   return (
     <>
       {data?.displayContentTextBlock && (

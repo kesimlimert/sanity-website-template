@@ -5,7 +5,7 @@ import { Header } from "@/components/Header";
 
 async function sharedMetaData(params: any) {
   const settings = await getSettings();
-
+  const logoUrl = settings?.logo;
   return {
     title: settings?.title,
     description: settings?.description,
@@ -23,6 +23,13 @@ async function sharedMetaData(params: any) {
     robots: {
       index: true,
       follow: true,
+    },
+    icons: {
+      icon: [
+        { url: urlForImage(settings?.logo)?.src},
+        { url: urlForImage(settings?.logo)?.src, width: 16, height: 16 },
+        { url: urlForImage(settings?.logo)?.src, width: 32, height: 32 },
+      ],
     },
   };
 }
