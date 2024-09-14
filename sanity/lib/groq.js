@@ -206,6 +206,17 @@ export const homepagequery = groq`
         answer
       }
     },
+    _type == "divider" => {
+      ...,
+      button {
+        buttonText,
+        buttonLink->{
+          _id,
+          title,
+          "slug": slug.current
+        }
+      }
+    },
   }
 }
 `;
