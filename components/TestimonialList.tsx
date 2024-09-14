@@ -10,7 +10,7 @@ type Testimonial = {
 type Props = {
   data: {
     displayContentTextBlock?: boolean;
-    contentTextBlock?: any; // You might want to define a more specific type for this
+    contentTextBlock?: any;
     testimonialReferences: Testimonial[];
   };
 };
