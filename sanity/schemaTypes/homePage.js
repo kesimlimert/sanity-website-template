@@ -24,16 +24,6 @@ export default {
 		type: "array",
 		of: [
 		  {
-			name: "authorsReferences",
-			type: "reference",
-			to: [{ type: "author" }],
-		  },
-		  {
-			name: "categoryReferences",
-			type: "reference",
-			to: [{ type: "category" }],
-		  },
-		  {
 			name: "postReferences",
 			type: "reference",
 			to: [{ type: "post" }],
