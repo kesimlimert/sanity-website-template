@@ -1,10 +1,14 @@
 import React from 'react'
 
 type Props = {
-	texts: any;
-}
+	texts: {
+	  subTitle?: string;
+	  title?: string;
+	  paragraph?: string;
+	};
+  }
 
-export function ContentTextBlock({texts}: Props) {
+export function ContentTextBlock({ texts }: Props) {
   return (
 	<div className='text-center py-2 m-auto max-w-xl'>
 		<h3 className='font-semibold text-purple-700'>{texts?.subTitle}</h3>

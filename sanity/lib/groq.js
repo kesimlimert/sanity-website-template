@@ -197,6 +197,15 @@ export const homepagequery = groq`
         authorJobTitle,
       },
     },
+    _type == "faqList" => {
+      ...,
+      faqReferences[]-> {
+        _id,
+        title,
+        question,
+        answer
+      }
+    },
   }
 }
 `;

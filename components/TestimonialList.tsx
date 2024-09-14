@@ -1,8 +1,18 @@
 import React from "react";
 import { ContentTextBlock } from "./ContentTextBlock";
 
+type Testimonial = {
+  comment: string;
+  authorName: string;
+  authorJobTitle: string;
+};
+
 type Props = {
-  data: any;
+  data: {
+    displayContentTextBlock?: boolean;
+    contentTextBlock?: any; // You might want to define a more specific type for this
+    testimonialReferences: Testimonial[];
+  };
 };
 
 export function TestimonialList({ data }: Props) {

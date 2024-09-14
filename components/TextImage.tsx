@@ -6,7 +6,31 @@ import { IconCircleCheck } from "@tabler/icons-react";
 import Link from "next/link";
 
 type Props = {
-  data: any;
+  data: {
+    image: {
+      asset: {
+        _ref: string;
+        _type: string;
+      };
+      position?: "left" | "right";
+    };
+    fullWidth?: boolean;
+    displayContentTextBlock?: boolean;
+    contentTextBlock?: any; 
+    title?: string;
+    displayParagraph?: boolean;
+    paragraph?: string;
+    displayList?: boolean;
+    list?: string[];
+    showIcons?: boolean;
+    displayButton?: boolean;
+    button?: {
+      buttonText: string;
+      buttonLink: {
+        slug: string;
+      };
+    };
+  };
 };
 
 export function TextImage({ data }: Props) {
@@ -51,7 +75,7 @@ export function TextImage({ data }: Props) {
           )}
           {data?.displayList && (
             <div className="pt-4">
-              {data?.list.map((item: any, index: number) => (
+              {data?.list?.map((item: any, index: number) => (
                 <div key={index} className="flex gap-2 pt-4">
                   {data?.showIcons && (
                     <IconCircleCheck size={24} color="#7e22ce" stroke={2} />
@@ -63,9 +87,9 @@ export function TextImage({ data }: Props) {
           )}
           {data?.displayButton && (
             <div className="mt-8">
-              <Link href={"/" + data?.button.buttonLink.slug}>
+              <Link href={"/" + data?.button?.buttonLink.slug}>
                 <Button color="secondary" size={fullWidth ? "lg" : "md"}>
-                  {data?.button.buttonText}
+                  {data?.button?.buttonText}
                 </Button>
               </Link>
             </div>
