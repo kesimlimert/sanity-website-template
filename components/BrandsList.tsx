@@ -1,9 +1,16 @@
 import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
 
-type Props = {
-  data: any;
-};
+interface BrandImage {
+  image: any;
+  alt: string;
+}
+
+interface Props {
+  data: {
+    brandImages?: BrandImage[];
+  };
+}
 
 export function BrandsList({ data }: Props) {
   const images = data?.brandImages?.map((brandImage: any) => {

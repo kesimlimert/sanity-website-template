@@ -1,6 +1,5 @@
 import { BrandsList } from "./BrandsList";
 import { TextImage } from "./TextImage";
-import { CategoryReferences } from "./CategoryReferences";
 import { PostReferences } from "./PostReferences";
 import { VideoReferences } from "./VideoReferences";
 import { ImageFullWidth } from "./ImageFullWidth";
@@ -11,10 +10,127 @@ import { PageTexts } from "./PageTexts";
 import { CardList } from "./CardList";
 import { Divider } from "./Divider";
 
-type Block = {
+// Base types
+type BaseBlock = {
   _type: string;
   _key: string;
 };
+
+type ContentTextBlock = any;
+
+// Specific block types
+type BrandsListBlock = BaseBlock & {
+  _type: "brandsList";
+  brandImages?: { image: any; alt: string }[];
+};
+
+type TextImageBlock = BaseBlock & {
+  _type: "textImage";
+  image: {
+    asset: { _ref: string; _type: string };
+    position?: "left" | "right";
+  };
+  fullWidth?: boolean;
+  displayContentTextBlock?: boolean;
+  contentTextBlock?: ContentTextBlock;
+  title?: string;
+  displayParagraph?: boolean;
+  paragraph?: string;
+  displayList?: boolean;
+  list?: string[];
+  showIcons?: boolean;
+  displayButton?: boolean;
+  button?: {
+    buttonText: string;
+    buttonLink: { slug: string };
+  };
+};
+
+type VideoReferencesBlock = BaseBlock & {
+  _type: "videoReferences";
+  title: string;
+  description: string;
+  displayContentTextBlock?: boolean;
+  contentTextBlock?: ContentTextBlock;
+  videoSource?: string;
+};
+
+type TestimonialListBlock = BaseBlock & {
+  _type: "testimonialList";
+  displayContentTextBlock?: boolean;
+  contentTextBlock?: ContentTextBlock;
+  testimonialReferences: {
+    comment: string;
+    authorName: string;
+    authorJobTitle: string;
+  }[];
+};
+
+type DividerBlock = BaseBlock & {
+  _type: "divider";
+  title: string;
+  paragraph: string;
+  displayButton: boolean;
+  button: {
+    buttonText: string;
+    buttonLink: {
+      title: string;
+      slug: string;
+    };
+  };
+};
+
+type FaqListBlock = BaseBlock & {
+  _type: "faqList";
+  title: string;
+  displayContentTextBlock: boolean;
+  contentTextBlock: ContentTextBlock;
+  faqReferences: {
+    _id: string;
+    title: string;
+    question: string;
+    answer: string;
+  }[];
+};
+
+type PostReferencesBlock = BaseBlock & {
+  _type: "postReferences";
+  // Add specific fields for PostReferences
+};
+
+type ImageFullWidthBlock = BaseBlock & {
+  _type: "imageFullWidth";
+  // Add specific fields for ImageFullWidth
+};
+
+type ImageGalleryBlock = BaseBlock & {
+  _type: "imageGallery";
+  // Add specific fields for ImageGallery
+};
+
+type PageTextsBlock = BaseBlock & {
+  _type: "pageTexts";
+  // Add specific fields for PageTexts
+};
+
+type CardListBlock = BaseBlock & {
+  _type: "cardList";
+  // Add specific fields for CardList
+};
+
+// Union type for all blocks
+type Block = 
+  | BrandsListBlock
+  | TextImageBlock
+  | VideoReferencesBlock
+  | TestimonialListBlock
+  | DividerBlock
+  | FaqListBlock
+  | PostReferencesBlock
+  | ImageFullWidthBlock
+  | ImageGalleryBlock
+  | PageTextsBlock
+  | CardListBlock;
 
 type Props = {
   content: Block[];
@@ -25,8 +141,6 @@ export function BlockRenderer({ content }: Props) {
     <>
       {content.map((block) => {
         switch (block._type) {
-          case "categoryReferences":
-            return <CategoryReferences key={block._key} data={block} />;
           case "postReferences":
             return <PostReferences key={block._key} data={block} />;
           case "videoReferences":
@@ -50,7 +164,7 @@ export function BlockRenderer({ content }: Props) {
           case "divider":
             return <Divider key={block._key} data={block} />;
           default:
-            console.warn(`Unsupported block type: ${block._type}`);
+            console.warn(`Unsupported block type: ${(block as Block)._type}`);
             return null;
         }
       })}
