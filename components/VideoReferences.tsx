@@ -162,7 +162,7 @@ export function VideoReferences({ data }: Props) {
       {data?.displayContentTextBlock && (
         <ContentTextBlock texts={data?.contentTextBlock} />
       )}
-      <div className="container max-w-5xl flex justify-center items-center m-auto my-16">
+      <div className="container max-w-3xl flex justify-center items-center m-auto my-16">
         {data?.videoSource && (
           <Card
             isBlurred
