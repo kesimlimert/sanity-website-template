@@ -1,6 +1,6 @@
-# Sanity Landing Page Template
+# Sanity Website Template
 
-This project is an agency landing page built with Next.js and Sanity, designed to provide a dynamic and easily manageable content experience for agencies. The purpose of using Sanity as the CMS is to enable dynamic content management for various sections of the website, including headers, static pages, and services.
+This project is an agency website built with Next.js and Sanity, designed to provide a dynamic and easily manageable content experience for agencies. The purpose of using Sanity as the CMS is to enable dynamic content management for various sections of the website, including headers, static pages, and services.
 
 ## Features
 
