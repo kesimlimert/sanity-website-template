@@ -23,6 +23,7 @@ export default {
 		title: "Content",
 		type: "array",
 		of: [
+		  { type: "postList" },
 		  {
 			name: "postReferences",
 			type: "reference",
@@ -30,6 +31,7 @@ export default {
 		  },
 		  {
 			name: "videoReferences",
+			title: "Add video",
 			type: "reference",
 			to: [{ type: "video" }],
 		  },

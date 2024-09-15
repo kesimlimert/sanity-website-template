@@ -217,10 +217,32 @@ export const homepagequery = groq`
         }
       }
     },
+     _type == "postList" => {
+      ...,
+      postListReferences[]-> {
+        title,
+        "slug": slug.current,
+        mainImage {
+          asset->{
+            url,
+            metadata {
+              lqip,
+              dimensions
+            }
+          },
+          alt
+        },
+        categories[]-> {
+          title,
+          description,
+          "slug": slug.current,
+          color 
+        },
+      }
+    },
   }
 }
 `;
-
 
 // get everything from sanity
 // to test connection

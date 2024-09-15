@@ -26,6 +26,7 @@ import aboutUs from "./aboutUs";
 import homePage from "./homePage";
 import navbar from "./navbar";
 import footer from "./footer";
+import postList from "./postList";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -55,5 +56,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     homePage,
     navbar,
     footer,
+    postList,
   ],
 };

@@ -22,16 +22,11 @@ export default {
       title: "Content",
       type: "array",
       of: [
-        {
-          name: "postReferences",
-          type: "reference",
-          title: "Single Posts",
-          to: [{ type: "post" }],
-        },
+        { type: "postList" },
         {
           name: "videoReferences",
           type: "reference",
-          title: "Single Video",
+          title: "Add video",
           to: [{ type: "video" }],
         },
         { type: "imageFullWidth" },

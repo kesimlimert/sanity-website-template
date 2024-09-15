@@ -1,6 +1,6 @@
 import { BrandsList } from "./BrandsList";
 import { TextImage } from "./TextImage";
-import { PostReferences } from "./PostReferences";
+import { PostList } from "./PostList";
 import { VideoReferences } from "./VideoReferences";
 import { ImageFullWidth } from "./ImageFullWidth";
 import { ImageGallery } from "./ImageGallery";
@@ -93,14 +93,38 @@ type FaqListBlock = BaseBlock & {
   }[];
 };
 
-type PostReferencesBlock = BaseBlock & {
-  _type: "postReferences";
-  // Add specific fields for PostReferences
+type Category = {
+  title: string;
+  slug: string;
+  color: string;
+};
+
+type Post = {
+  slug: string;
+  title: string;
+  mainImage: {
+    asset: {
+      url: string;
+    };
+  };
+  categories: Category[];
+};
+
+type PostListBlock = BaseBlock & {
+  _type: "postList";
+  postListReferences: Post[];
 };
 
 type ImageFullWidthBlock = BaseBlock & {
   _type: "imageFullWidth";
-  // Add specific fields for ImageFullWidth
+  image: {
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+    alt?: string;
+  };
+  title: string;
 };
 
 type ImageGalleryBlock = BaseBlock & {
@@ -126,7 +150,7 @@ type Block =
   | TestimonialListBlock
   | DividerBlock
   | FaqListBlock
-  | PostReferencesBlock
+  | PostListBlock
   | ImageFullWidthBlock
   | ImageGalleryBlock
   | PageTextsBlock
@@ -141,8 +165,8 @@ export function BlockRenderer({ content }: Props) {
     <>
       {content.map((block) => {
         switch (block._type) {
-          case "postReferences":
-            return <PostReferences key={block._key} data={block} />;
+          case "postList":
+            return <PostList key={block._key} data={block} />;
           case "videoReferences":
             return <VideoReferences key={block._key} data={block} />;
           case "imageFullWidth":

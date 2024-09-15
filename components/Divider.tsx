@@ -20,7 +20,6 @@ type Props = {
 };
 
 export function Divider({ data }: Props) {
-  console.log(data);
   return (
     <>
       {data && (
