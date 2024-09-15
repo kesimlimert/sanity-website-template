@@ -240,6 +240,14 @@ export const homepagequery = groq`
         },
       }
     },
+    _type == "cardList" => {
+      ...,
+      cards[]-> {
+        title,
+        subtitle,
+        paragraph,
+      }
+    },
   }
 }
 `;

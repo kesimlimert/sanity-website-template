@@ -24,7 +24,7 @@ export function TestimonialList({ data }: Props) {
       <div className="container max-w-5xl flex justify-center items-center m-auto my-16">
         {data?.testimonialReferences?.map((testimonial: any, index: number) => (
           <div
-            className="flex flex-col gap-4 bg-gray-200 mx-2 rounded-xl p-4"
+            className="flex flex-col gap-4 bg-gray-100 mx-2 rounded-xl p-4"
             key={index}
           >
             <p>{testimonial.comment}</p>

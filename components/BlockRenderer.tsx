@@ -139,7 +139,11 @@ type PageTextsBlock = BaseBlock & {
 
 type CardListBlock = BaseBlock & {
   _type: "cardList";
-  // Add specific fields for CardList
+  cards: {
+    title: string;
+    subtitle: string;
+    paragraph: string;
+  }[];
 };
 
 // Union type for all blocks
