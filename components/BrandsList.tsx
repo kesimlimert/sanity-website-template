@@ -18,13 +18,13 @@ export function BrandsList({ data }: Props) {
       src: "",
       width: 0,
       height: 0,
-      alt: brandImage.alt,
+      alt: "alt",
     };
     return {
       src: src as string,
       width: width as number,
       height: height as number,
-      alt,
+      alt: brandImage.alt,
     };
   });
   return (
