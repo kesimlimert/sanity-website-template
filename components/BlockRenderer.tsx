@@ -129,7 +129,15 @@ type ImageFullWidthBlock = BaseBlock & {
 
 type ImageGalleryBlock = BaseBlock & {
   _type: "imageGallery";
-  // Add specific fields for ImageGallery
+  images: {
+    _type: string;
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+    alt?: string;
+  }[];
+  maxWidth?: string;
 };
 
 type PageTextsBlock = BaseBlock & {

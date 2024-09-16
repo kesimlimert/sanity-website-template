@@ -1,37 +1,97 @@
-import React from 'react';
-import { urlForImage } from '@/sanity/lib/image';
-import Image from 'next/image';
+"use client"
 
-type Props = {
-  data: any;
-};
+import React, { useState } from "react";
+import { urlForImage } from "@/sanity/lib/image";
+import Image from "next/image";
+import { Card } from "@nextui-org/card";
+import { Modal, ModalContent, ModalBody, useDisclosure } from "@nextui-org/modal";
 
-export function ImageGallery({ data }: Props) {
-  const images = data?.brandImages?.map((brandImage: any) => {
-    const { src, width, height, alt } = urlForImage(brandImage.image) ?? {
+interface ImageData {
+  _type: string;
+  asset: {
+    _ref: string;
+    _type: string;
+  };
+  alt?: string;
+}
+
+interface Props {
+  data: {
+    images: ImageData[];
+  };
+  maxWidth?: string;
+  className?: string;
+}
+
+export function ImageGallery({ data, maxWidth = "5xl", className = "" }: Props) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const images = data?.images.map((image: ImageData) => {
+    const { src, width, height, alt } = urlForImage(image) ?? {
       src: "",
       width: 0,
       height: 0,
-      alt: brandImage.alt,
+      alt: image.alt,
     };
     return {
       src: src as string,
       width: width as number,
       height: height as number,
-      alt,
+      alt: alt as string,
     };
   });
-  console.log(data);
+
+  const handleImageClick = (src: string) => {
+    setSelectedImage(src);
+    onOpen();
+  };
+
   return (
-    <div className="max-w-5xl m-auto my-16 gap-2 grid grid-cols-12 grid-rows-2">
-      {images?.map((image: any, index: number) => (
-        <Image
-          src={image.src}
-          alt={image.alt}
-          width={image.width}
-          height={image.height}
-        />
-      ))}
-    </div>
+    <>
+      <div className={`max-w-${maxWidth} m-auto my-16 gap-2 grid grid-cols-9 grid-rows-2 ${className}`}>
+        {images?.map((image: any, index: number) => (
+          <Card 
+            key={index}
+            className={`col-span-3 ${(index + 1) % 4 === 0 ? 'col-span-9 h-[300px]' : 'h-[300px]'} cursor-pointer`}
+            onClick={() => handleImageClick(image.src)}
+            isPressable
+          >
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+              className="w-full h-full object-cover"
+            />
+          </Card>
+        ))}
+      </div>
+
+      <Modal 
+        isOpen={isOpen} 
+        onClose={onClose} 
+        size="xl"
+        className="bg-transparent shadow-none"
+      >
+        <ModalContent>
+          {(onClose) => (
+            <ModalBody className="p-0">
+              {selectedImage && (
+                <div className="relative w-full h-[80vh]">
+                  <Image
+                    src={selectedImage}
+                    alt="Enlarged image"
+                    fill
+                    style={{ objectFit: 'contain' }}
+                    onClick={onClose}
+                  />
+                </div>
+              )}
+            </ModalBody>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
   );
 }

@@ -12,7 +12,18 @@ export default {
 		name: 'images',
 		type: 'array',
 		title: 'Images',
-		of: [{ type: 'image' }],
+		of: [
+			{
+			  type: 'image',
+			  fields: [
+				{
+				  name: 'alt',
+				  type: 'string',
+				  title: 'Alternative Text',
+				},
+			  ],
+			},
+		  ],
 		options: {
 		  layout: 'grid',
 		},
