@@ -1,7 +1,7 @@
 import { BrandsList } from "./BrandsList";
 import { TextImage } from "./TextImage";
 import { PostList } from "./PostList";
-import { VideoReferences } from "./VideoReferences";
+import { VideoPlayer } from "./VideoPlayer";
 import { ImageFullWidth } from "./ImageFullWidth";
 import { ImageGallery } from "./ImageGallery";
 import { FaqList } from "./FaqList";
@@ -46,8 +46,8 @@ type TextImageBlock = BaseBlock & {
   };
 };
 
-type VideoReferencesBlock = BaseBlock & {
-  _type: "videoReferences";
+type VideoPlayerBlock = BaseBlock & {
+  _type: "VideoPlayer";
   title: string;
   description: string;
   displayContentTextBlock?: boolean;
@@ -150,7 +150,7 @@ type CardListBlock = BaseBlock & {
 type Block = 
   | BrandsListBlock
   | TextImageBlock
-  | VideoReferencesBlock
+  | VideoPlayerBlock
   | TestimonialListBlock
   | DividerBlock
   | FaqListBlock
@@ -171,8 +171,8 @@ export function BlockRenderer({ content }: Props) {
         switch (block._type) {
           case "postList":
             return <PostList key={block._key} data={block} />;
-          case "videoReferences":
-            return <VideoReferences key={block._key} data={block} />;
+          case "VideoPlayer":
+            return <VideoPlayer key={block._key} data={block} />;
           case "imageFullWidth":
             return <ImageFullWidth key={block._key} data={block} />;
           case "imageGallery":
