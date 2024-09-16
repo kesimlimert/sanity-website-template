@@ -14,7 +14,7 @@ interface Props {
 
 export function BrandsList({ data }: Props) {
   const images = data?.brandImages?.map((brandImage: any) => {
-    const { src, width, height, alt } = urlForImage(brandImage.image) ?? {
+    const { src, width, height } = urlForImage(brandImage.image) ?? {
       src: "",
       width: 0,
       height: 0,
