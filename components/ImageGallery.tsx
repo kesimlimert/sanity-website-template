@@ -18,6 +18,7 @@ interface ImageData {
 interface Props {
   data: {
     images: ImageData[];
+    title: string;
   };
   maxWidth?: string;
   className?: string;
@@ -49,6 +50,7 @@ export function ImageGallery({ data, maxWidth = "5xl", className = "" }: Props) 
 
   return (
     <>
+      <h1 className="text-4xl pt-2 font-bold leading-tight text-center">{data?.title}</h1>
       <div className={`max-w-${maxWidth} m-auto my-16 gap-2 grid grid-cols-9 grid-rows-2 ${className}`}>
         {images?.map((image: any, index: number) => (
           <Card 

@@ -138,6 +138,7 @@ type ImageGalleryBlock = BaseBlock & {
     alt?: string;
   }[];
   maxWidth?: string;
+  title: string;
 };
 
 type PageTextsBlock = BaseBlock & {
