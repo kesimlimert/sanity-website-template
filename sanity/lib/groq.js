@@ -222,6 +222,7 @@ export const homepagequery = groq`
       postListReferences[]-> {
         title,
         "slug": slug.current,
+        excerpt,
         mainImage {
           asset->{
             url,
@@ -246,6 +247,13 @@ export const homepagequery = groq`
         title,
         subtitle,
         paragraph,
+      }
+    },
+    _type == "pageTexts" => {
+      ...,
+      content[] {
+        ...,
+        children[]
       }
     },
   }

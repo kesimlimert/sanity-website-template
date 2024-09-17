@@ -12,6 +12,7 @@ type Category = {
 type Post = {
   slug: string;
   title: string;
+  excerpt: string;
   mainImage: {
     asset: {
       url: string;
@@ -26,6 +27,7 @@ type Props = {
   };
 };
 export function PostList({ data }: Props) {
+  console.log(data);
   const getCategoryColor = (color: string) => {
     const colorMap: { [key: string]: string } = {
       green: 'bg-green-400',
@@ -40,7 +42,7 @@ export function PostList({ data }: Props) {
     <div className="flex gap-8 max-w-5xl flex-wrap mx-auto my-10">
       {data?.postListReferences?.map((post: any) => (
         <Link href={`/posts/${post.slug}`} key={post.slug}>
-          <Card className="w-80" isPressable>
+          <Card className="w-80 h-[380px]" isPressable>
             <CardHeader className="my-1">
               <p className="text-sm font-bold">{post.title}</p>
             </CardHeader>
@@ -52,6 +54,7 @@ export function PostList({ data }: Props) {
                 height={300}
                 className="w-full h-48 object-cover"
               />
+            <p className="text-sm line-clamp-3 px-2 py-2 text-black">{post.excerpt}</p>
             </CardBody>
             <CardFooter className="mt-4">
               {post.categories.map((category: any) => (
