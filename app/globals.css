@@ -7,3 +7,47 @@
     text-wrap: balance;
   }
 }
+
+.portableText h2 {
+   @apply text-4xl font-bold leading-tight pb-8;
+}
+
+.portableText p {
+   @apply pb-2;
+}
+
+.portableText h3 {
+  @apply text-3xl pt-2 font-bold leading-tight pb-4;
+}
+
+.portableText h4 {
+  @apply text-2xl pt-2 font-bold leading-tight pb-2;
+}
+
+.portableText ol > li {
+  @apply pb-1 list-decimal;
+}
+
+.portableText ul > li {
+  @apply pb-1 list-disc;
+}
+
+.portableText ul {
+  @apply pl-4 py-2;
+}
+
+.portableText ol {
+  @apply pl-5 py-2;
+}
+
+.portableText a {
+  @apply underline;
+}
+
+.portableText img {
+  @apply py-2;
+}
+
+.portableText blockquote {
+  @apply text-xl italic font-semibold text-black;
+}

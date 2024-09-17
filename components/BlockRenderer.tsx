@@ -144,7 +144,8 @@ type ImageGalleryBlock = BaseBlock & {
 
 type PageTextsBlock = BaseBlock & {
   _type: "pageTexts";
-  // Add specific fields for PageTexts
+  title: string;
+  content: any[];
 };
 
 type CardListBlock = BaseBlock & {

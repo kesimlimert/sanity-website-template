@@ -5,7 +5,6 @@ import { Header } from "@/components/Header";
 
 async function sharedMetaData(params: any) {
   const settings = await getSettings();
-  const logoUrl = settings?.logo;
   return {
     title: settings?.title,
     description: settings?.description,
