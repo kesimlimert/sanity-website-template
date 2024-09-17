@@ -27,7 +27,6 @@ type Props = {
   };
 };
 export function PostList({ data }: Props) {
-  console.log(data);
   const getCategoryColor = (color: string) => {
     const colorMap: { [key: string]: string } = {
       green: 'bg-green-400',
