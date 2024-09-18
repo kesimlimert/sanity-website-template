@@ -16,6 +16,7 @@ import {
   servicesnavquery,
   navbarmenuquery,
   homepagequery,
+  footerquery,
 } from "./groq";
 import { createClient } from "next-sanity";
 
@@ -120,6 +121,15 @@ export async function getNavbarMenu() {
 export async function getHomepage() {
   if (client) {
     return (await client.fetch(homepagequery)) || {};
+  }
+  return {};
+}
+
+// Footer
+
+export async function getFooter() {
+  if (client) {
+    return (await client.fetch(footerquery)) || {};
   }
   return {};
 }

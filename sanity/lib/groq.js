@@ -260,6 +260,19 @@ export const homepagequery = groq`
 }
 `;
 
+// Get footer
+export const footerquery = groq`
+*[_type == "footer"][0] {
+  title,
+  navigation[]-> {
+    _type,
+    title,
+    "slug": slug.current
+  },
+  displaySocialMedia
+}
+`;
+
 // get everything from sanity
 // to test connection
 export const getAll = groq`*[]`;

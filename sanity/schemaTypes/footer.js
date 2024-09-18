@@ -17,11 +17,12 @@ export default {
       of: [
         {
           type: "reference",
-		  name: "pageReferences",
+          name: "pageReferences",
           to: [{ type: "aboutUs" }, { type: "page" }, { type: "contactUs" }],
         },
       ],
-	  validation: Rule => Rule.max(10).warning('You can only add up to 10 navigation items'),
+      validation: (Rule) =>
+        Rule.max(10).warning("You can only add up to 10 navigation items"),
     },
     {
       name: "displaySocialMedia",

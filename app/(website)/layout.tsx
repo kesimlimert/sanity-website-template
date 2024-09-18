@@ -1,7 +1,8 @@
-import { getSettings, getAllPostsServicesMenu, getNavbarMenu } from "@/sanity/lib/client";
+import { getSettings, getAllPostsServicesMenu, getNavbarMenu, getFooter } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Params from "next/router";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 async function sharedMetaData(params: any) {
   const settings = await getSettings();
@@ -46,14 +47,14 @@ export default async function Layout({
   const settings = await getSettings();
   const servicesMenu = await getAllPostsServicesMenu();
   const navbarMenu = await getNavbarMenu();
-  
+  const footer = await getFooter();
   return (
     <>
       <Header logo={settings.logo} servicesMenu={servicesMenu} navbarMenu={navbarMenu}  />
 
       <div>{children}</div>
 
-      {/* <Footer {...settings} /> */}
+      <Footer settings={settings} footer={footer} />
     </>
   );
 }
