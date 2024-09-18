@@ -27,7 +27,7 @@ export function FaqList({ data }: Props) {
         <ContentTextBlock texts={data?.contentTextBlock} />
       )}
       {data && data.faqReferences.length > 0 && (
-        <div className="max-w-3xl my-16 mx-auto">
+        <div className="max-w-3xl my-16 px-4 mx-auto">
           <Accordion>
             {data.faqReferences.map((faq: FaqItem) => (
               <AccordionItem key={faq._id} title={faq.question}>

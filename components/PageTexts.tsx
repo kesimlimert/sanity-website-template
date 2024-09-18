@@ -33,7 +33,7 @@ const components: PortableTextComponents = {
 
 export function PageTexts({ data }: Props) {
   return (
-    <div className="container max-w-5xl mx-auto my-16 portableText">
+    <div className="container max-w-5xl px-4 mx-auto my-16 portableText">
       <PortableText 
         value={data.content} 
         components={components}

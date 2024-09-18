@@ -18,7 +18,7 @@ export function ImageFullWidth({ data }: Props) {
   };
   return (
     <div className="w-full relative">
-      <h2 className="text-4xl font-bold absolute bottom-10 text-white left-10">{data.title}</h2>
+      <h2 className="text-4xl font-bold absolute sm:bottom-10 bottom-5 text-white sm:left-10 left-5">{data.title}</h2>
       <Image
         src={src}
         alt={alt}
