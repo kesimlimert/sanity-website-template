@@ -59,14 +59,16 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
         <NavbarBrand>
           {logo && (
             <div className="w-full h-auto max-w-20">
-              <Image
-                src={src}
-                width={width}
-                height={height}
-                alt={alt}
-                priority={true}
-                sizes="(max-width: 640px) 100vw, 200px"
-              />
+              <Link href="/">
+                <Image
+                  src={src}
+                  width={width}
+                  height={height}
+                  alt={alt}
+                  priority={true}
+                  sizes="(max-width: 640px) 100vw, 200px"
+                />
+              </Link>
             </div>
           )}
         </NavbarBrand>
@@ -76,14 +78,16 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
         <NavbarBrand>
           {logo && (
             <div className="w-full h-auto max-w-20">
-              <Image
-                src={src}
-                width={width}
-                height={height}
-                alt={alt}
-                priority={true}
-                sizes="(max-width: 640px) 100vw, 200px"
-              />
+              <Link href="/">
+                <Image
+                  src={src}
+                  width={width}
+                  height={height}
+                  alt={alt}
+                  priority={true}
+                  sizes="(max-width: 640px) 100vw, 200px"
+                />
+              </Link>
             </div>
           )}
         </NavbarBrand>

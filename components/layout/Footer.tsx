@@ -66,8 +66,6 @@ type Props = {
 };
 
 export function Footer({ settings, footer }: Props) {
-  console.log(settings);
-  console.log(footer);
   const socialMediaIcon = settings?.social.map((social) => {
     switch (social.media) {
       case "linkedin":

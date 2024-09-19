@@ -17,6 +17,12 @@ import {
   navbarmenuquery,
   homepagequery,
   footerquery,
+  pagequery,
+  pathcontactquery,
+  pathaboutquery,
+  pathpagequery,
+  aboutusquery,
+  contactusquery,
 } from "./groq";
 import { createClient } from "next-sanity";
 
@@ -125,6 +131,14 @@ export async function getHomepage() {
   return {};
 }
 
+// Get page
+export async function getPageBySlug(slug: string) {
+  if (client) {
+    return (await client.fetch(pagequery, { slug })) || {};
+  }
+  return {};
+}
+
 // Footer
 
 export async function getFooter() {
@@ -168,4 +182,66 @@ export async function getPaginatedPosts({ limit, pageIndex }: { limit: number; p
     );
   }
   return [];
+}
+
+export async function getAboutUsSlug() {
+  if (client) {
+    const slug = await client.fetch(pathaboutquery);
+    return slug ? { slug } : null;
+  }
+  return null;
+}
+
+export async function getContactUsSlug() {
+  if (client) {
+    const slug = await client.fetch(pathcontactquery);
+    return slug ? { slug } : null;
+  }
+  return null;
+}
+
+export async function getAllPagesSlugs() {
+  if (client) {
+    const slugs: string[] = (await client.fetch(pathpagequery)) || [];
+    return slugs.map(slug => ({ slug }));
+  }
+  return [];
+}
+
+export async function getAboutUs() {
+  if (client) {
+    return (await client.fetch(aboutusquery)) || {};
+  }
+  return {};
+}
+
+export async function getContactUs() {
+  if (client) {
+    return (await client.fetch(contactusquery)) || {};
+  }
+  return {};
+}
+
+export async function getAllSlugs() {
+  if (client) {
+    const posts = await getAllPostsSlugs();
+    const pages = await getAllPagesSlugs();
+    const about = await getAboutUsSlug();
+    const contact = await getContactUsSlug();
+    
+    return [
+      ...posts.map(({ slug }) => ({ _type: 'post', slug })),
+      ...pages.map(({ slug }) => ({ _type: 'page', slug })),
+      ...(about ? [{ _type: 'aboutUs', slug: about.slug }] : []),
+      ...(contact ? [{ _type: 'contactUs', slug: contact.slug }] : [])
+    ];
+  }
+  return [];
+}
+
+export async function getContentBySlug(slug: string) {
+  const query = `*[slug.current == $slug][0]`;
+  const params = { slug };
+  const result = await client?.fetch(query, params);
+  return result;
 }

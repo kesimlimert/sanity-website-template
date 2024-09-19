@@ -84,6 +84,15 @@ export const servicesnavquery = groq`
   "title": title
 }
 `;
+export const pathcontactquery = groq`
+*[_type == "contactUs" && defined(slug.current)][].slug.current
+`;
+export const pathaboutquery = groq`
+*[_type == "contactUs" && defined(slug.current)][].slug.current
+`;
+export const pathpagequery = groq`
+*[_type == "page" && defined(slug.current)][].slug.current
+`;
 export const catpathquery = groq`
 *[_type == "category" && defined(slug.current)][].slug.current
 `;
@@ -260,6 +269,116 @@ export const homepagequery = groq`
 }
 `;
 
+// Get page
+export const pagequery = groq`
+*[_type == "page" && slug.current == $slug][0] {
+  ...,
+  content[] {
+    ...,
+    _type == "reference" => @->{
+      title,
+      "slug": slug.current
+    },
+    _type == "textImage" => {
+      ...,
+      button {
+        buttonText,
+        buttonLink->{
+          title,
+          "slug": slug.current
+        }
+      }
+    },
+    _type == "brandsList" => {
+      ...,
+      brandImages[]->{
+        _id,
+        _type,
+        image,
+        alt
+      }
+    },
+    _type == "videoReferences" => @->{
+      _id,
+      displayContentTextBlock,
+      contentTextBlock,
+      videoSource,
+      title,
+      description,
+    },
+     _type == "testimonialList" => {
+      ...,
+      testimonialReferences[]-> {
+        _id,
+        title,
+        comment,
+        authorName,
+        authorJobTitle,
+      },
+    },
+    _type == "faqList" => {
+      ...,
+      faqReferences[]-> {
+        _id,
+        title,
+        question,
+        answer
+      }
+    },
+    _type == "divider" => {
+      ...,
+      button {
+        buttonText,
+        buttonLink->{
+          _id,
+          title,
+          "slug": slug.current
+        }
+      }
+    },
+     _type == "postList" => {
+      ...,
+      postListReferences[]-> {
+        title,
+        "slug": slug.current,
+        excerpt,
+        mainImage {
+          asset->{
+            url,
+            metadata {
+              lqip,
+              dimensions
+            }
+          },
+          alt
+        },
+        categories[]-> {
+          title,
+          description,
+          "slug": slug.current,
+          color 
+        },
+      }
+    },
+    _type == "cardList" => {
+      ...,
+      cards[]-> {
+        title,
+        subtitle,
+        paragraph,
+      }
+    },
+    _type == "pageTexts" => {
+      ...,
+      content[] {
+        ...,
+        children[]
+      }
+    },
+  }
+}
+`;
+
 // Get footer
 export const footerquery = groq`
 *[_type == "footer"][0] {
@@ -270,6 +389,20 @@ export const footerquery = groq`
     "slug": slug.current
   },
   displaySocialMedia
+}
+`;
+
+// Get About Us
+export const aboutusquery = groq`
+*[_type == "aboutUs"][0] {
+  ...,
+}
+`;
+
+// Get Contact Us
+export const contactusquery = groq`
+*[_type == "contactUs"][0] {
+  ...,
 }
 `;
 

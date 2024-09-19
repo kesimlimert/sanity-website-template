@@ -1,8 +1,8 @@
 import { getSettings, getAllPostsServicesMenu, getNavbarMenu, getFooter } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import Params from "next/router";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 async function sharedMetaData(params: any) {
   const settings = await getSettings();

@@ -40,7 +40,7 @@ export function PostList({ data }: Props) {
   return (
     <div className="flex gap-4 max-w-5xl justify-center sm:justify-start px-4 flex-wrap mx-auto my-10">
       {data?.postListReferences?.map((post: any) => (
-        <Link href={`/posts/${post.slug}`} key={post.slug}>
+        <Link href={post.slug} key={post.slug}>
           <Card className="w-80 h-[380px]" isPressable>
             <CardHeader className="my-1">
               <p className="text-sm font-bold">{post.title}</p>
