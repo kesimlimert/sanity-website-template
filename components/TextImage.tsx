@@ -47,7 +47,7 @@ export function TextImage({ data }: Props) {
         <ContentTextBlock texts={data?.contentTextBlock} />
       )}
       <div
-        className={`container flex sm:flex-row sm:gap-0 gap-8 flex-col justify-center items-center ${data?.image?.position === "right" ? `flex-row-reverse` : ``} ${fullWidth ? `max-w-screen-xl p-8` : `max-w-5xl p-4`} m-auto px-4 my-16`}
+        className={`container flex sm:flex-row sm:gap-0 gap-8 flex-col justify-center items-center ${data?.image?.position === "right" ? `sm:flex-row-reverse` : ``} ${fullWidth ? `max-w-screen-xl p-8` : `max-w-5xl p-4`} m-auto px-4 my-16`}
       >
         <div className="flex-1">
           <Image
