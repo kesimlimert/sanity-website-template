@@ -1,5 +1,5 @@
 import { urlForImage } from "@/sanity/lib/image";
-import Image from "next/image";
+import { Image } from "@nextui-org/react";
 import { ContentTextBlock } from "./ContentTextBlock";
 import { Button } from "@nextui-org/react";
 import { IconCircleCheck } from "@tabler/icons-react";
