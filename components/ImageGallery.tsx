@@ -64,7 +64,7 @@ export function ImageGallery({ data, maxWidth = "5xl", className = "" }: Props) 
               alt={image.alt}
               width={image.width}
               height={image.height}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover hover:scale-125 transition-all duration-500 cursor-pointer"
             />
           </Card>
         ))}

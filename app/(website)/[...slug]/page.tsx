@@ -27,4 +27,3 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
 	}
   }
   
-  // ... rest of the file remains unchanged ...

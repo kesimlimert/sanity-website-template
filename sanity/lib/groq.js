@@ -406,6 +406,17 @@ export const contactusquery = groq`
 }
 `;
 
+export const contentbyslugquery = groq`
+*[slug.current == $slug][0] {
+  ...,
+  categories[]->{
+    _id,
+    title,
+    slug,
+    color
+  }
+}
+`;
 // get everything from sanity
 // to test connection
 export const getAll = groq`*[]`;

@@ -23,6 +23,7 @@ import {
   pathpagequery,
   aboutusquery,
   contactusquery,
+  contentbyslugquery,
 } from "./groq";
 import { createClient } from "next-sanity";
 
@@ -240,8 +241,7 @@ export async function getAllSlugs() {
 }
 
 export async function getContentBySlug(slug: string) {
-  const query = `*[slug.current == $slug][0]`;
   const params = { slug };
-  const result = await client?.fetch(query, params);
+  const result = await client?.fetch(contentbyslugquery, params);
   return result;
 }
