@@ -47,7 +47,7 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
       onMenuOpenChange={setIsMenuOpen}
       isBlurred={false}
       shouldHideOnScroll
-      maxWidth="xl"
+      maxWidth="lg"
     >
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle
