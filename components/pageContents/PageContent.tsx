@@ -5,7 +5,6 @@ type Props = {
 };
 
 export function PageContent({ data }: Props) {
-  console.log(data);
   return (
     <>
       <BlockRenderer content={data.content} />
