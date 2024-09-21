@@ -129,14 +129,6 @@ export async function getHomepage() {
   return {};
 }
 
-// Get page
-export async function getPageBySlug(slug: string) {
-  if (client) {
-    return (await client.fetch(pagequery, { slug })) || {};
-  }
-  return {};
-}
-
 // Footer
 
 export async function getFooter() {
@@ -204,20 +196,6 @@ export async function getAllPagesSlugs() {
     return slugs.map(slug => ({ slug }));
   }
   return [];
-}
-
-export async function getAboutUs() {
-  if (client) {
-    return (await client.fetch(aboutusquery)) || {};
-  }
-  return {};
-}
-
-export async function getContactUs() {
-  if (client) {
-    return (await client.fetch(contactusquery)) || {};
-  }
-  return {};
 }
 
 export async function getAllSlugs() {
