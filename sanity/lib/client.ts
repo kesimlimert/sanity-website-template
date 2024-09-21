@@ -17,12 +17,9 @@ import {
   navbarmenuquery,
   homepagequery,
   footerquery,
-  pagequery,
   pathcontactquery,
   pathaboutquery,
   pathpagequery,
-  aboutusquery,
-  contactusquery,
   contentbyslugquery,
 } from "./groq";
 import { createClient } from "next-sanity";

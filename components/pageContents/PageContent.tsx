@@ -1,11 +1,14 @@
-type Props = {
-	content: any;
-}
+import { BlockRenderer } from "../BlockRenderer";
 
-export function PageContent({ content }: Props) {
-	return (
-		<>
-			<p>Page</p>
-		</>
-	)
+type Props = {
+  data: any;
+};
+
+export function PageContent({ data }: Props) {
+  console.log(data);
+  return (
+    <>
+      <BlockRenderer content={data.content} />
+    </>
+  );
 }

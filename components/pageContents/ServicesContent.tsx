@@ -3,7 +3,7 @@ import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { urlForImage } from "@/sanity/lib/image";
 
 type Props = {
-  content: any;
+  data: any;
 };
 
 const components: PortableTextComponents = {
@@ -27,7 +27,7 @@ const components: PortableTextComponents = {
   },
 };
 
-export function ServicesContent({ content }: Props) {
+export function ServicesContent({ data }: Props) {
   const getCategoryColor = (color: string) => {
     const colorMap: { [key: string]: string } = {
       green: 'bg-green-400',
@@ -39,21 +39,21 @@ export function ServicesContent({ content }: Props) {
   };
   return (
     <>
-      {content && (
+      {data && (
         <div className="container max-w-5xl px-4 mx-auto my-16 portableText">
           <div className="flex justify-center items-center">
             <Image
-              src={(urlForImage(content.mainImage)?.src || "")}
-              alt={content.mainImage?.alt || ""}
+              src={(urlForImage(data.mainImage)?.src || "")}
+              alt={data.mainImage?.alt || ""}
               width={600}
               height={300}
               loading="eager"
               className="mb-10"
             />
           </div>
-          <PortableText value={content.body} components={components} />
+          <PortableText value={data.body} components={components} />
           <div className="flex mt-5 items-center">
-            {content.categories.map((category: any) => (
+            {data.categories.map((category: any) => (
               <div
                 className={`${getCategoryColor(category.color)} opacity-80 rounded-full py-1 px-2`}
                 key={category.slug}

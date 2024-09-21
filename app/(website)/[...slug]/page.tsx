@@ -15,13 +15,13 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   
 	switch (content._type) {
 	  case 'post':
-		return <ServicesContent content={content} />
+		return <ServicesContent data={content} />
 	  case 'page':
-		return <PageContent content={content} />
+		return <PageContent data={content} />
 	  case 'aboutUs':
-		return <AboutUsContent content={content} />
+		return <AboutUsContent data={content} />
 	  case 'contactUs':
-		return <ContactUsContent content={content} />
+		return <ContactUsContent data={content} />
 	  default:
 		notFound()
 	}

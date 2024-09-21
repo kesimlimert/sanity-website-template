@@ -1,8 +1,8 @@
 type Props = {
-	content: any;
+	data: any;
 }
 
-export function ContactUsContent({ content }: Props) {
+export function ContactUsContent({ data }: Props) {
 	return (
 		<>
 			<p>Contact Us</p>

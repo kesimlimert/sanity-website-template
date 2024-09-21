@@ -1,9 +1,9 @@
 
 type Props = {
-	content: any;
+	data: any;
 }
 
-export function AboutUsContent({ content }: Props) {
+export function AboutUsContent({ data }: Props) {
 	return (
 		<>
 			<p>About Us</p>

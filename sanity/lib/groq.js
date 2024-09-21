@@ -269,11 +269,31 @@ export const homepagequery = groq`
 }
 `;
 
-// Get page
-export const pagequery = groq`
-*[_type == "page" && slug.current == $slug][0] {
+// Get footer
+export const footerquery = groq`
+*[_type == "footer"][0] {
+  title,
+  navigation[]-> {
+    _type,
+    title,
+    "slug": slug.current
+  },
+  displaySocialMedia
+}
+`;
+
+export const contentbyslugquery = groq`
+*[slug.current == $slug][0] {
   ...,
-  content[] {
+  categories[]->{
+    _id,
+    title,
+    slug,
+    color
+  },
+   _type == "page" => {
+      ...,
+      content[] {
     ...,
     _type == "reference" => @->{
       title,
@@ -376,45 +396,7 @@ export const pagequery = groq`
       }
     },
   }
-}
-`;
-
-// Get footer
-export const footerquery = groq`
-*[_type == "footer"][0] {
-  title,
-  navigation[]-> {
-    _type,
-    title,
-    "slug": slug.current
-  },
-  displaySocialMedia
-}
-`;
-
-// Get About Us
-export const aboutusquery = groq`
-*[_type == "aboutUs"][0] {
-  ...,
-}
-`;
-
-// Get Contact Us
-export const contactusquery = groq`
-*[_type == "contactUs"][0] {
-  ...,
-}
-`;
-
-export const contentbyslugquery = groq`
-*[slug.current == $slug][0] {
-  ...,
-  categories[]->{
-    _id,
-    title,
-    slug,
-    color
-  }
+    },
 }
 `;
 // get everything from sanity
