@@ -19,7 +19,7 @@ import { urlForImage } from "@/sanity/lib/image";
 import { useState } from "react";
 import { IconChevronDown } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
-
+import { useNavbarStore } from "@/lib/store";
 type Props = {
   logo?: string;
   servicesMenu: any;
@@ -30,6 +30,7 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
   const navbarItems = navbarMenu.pageReferences;
+  const { activeItem } = useNavbarStore();
   const { src, width, height, alt } = urlForImage(logo) ?? {
     src: "",
     width: 0,
@@ -117,6 +118,7 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
                   <DropdownItem
                     onClick={() => handleNavigation(item.slug)}
                     key={index}
+                    color="secondary"
                   >
                     {item.title}
                   </DropdownItem>
@@ -126,7 +128,7 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
         )}
         {navbarMenu &&
           navbarItems.map((item: any, index: number) => (
-            <NavbarItem key={index}>
+            <NavbarItem key={index} isActive={activeItem === item.slug}>
               <Link color="foreground" href={"/" + item.slug}>
                 {item.title}
               </Link>
@@ -135,7 +137,7 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
       </NavbarContent>
       <NavbarMenu>
         {servicesMenu?.map((item: any, index: number) => (
-          <NavbarMenuItem key={index}>
+          <NavbarMenuItem key={index} color="secondary" isActive={activeItem === item.slug}>
             <Link
               className="w-full"
               color={"foreground"}
@@ -148,7 +150,7 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
         ))}
         {navbarMenu &&
           navbarItems.map((item: any, index: number) => (
-            <NavbarMenuItem key={index}>
+            <NavbarMenuItem key={index} color="secondary" isActive={activeItem === item.slug}>
               <Link
                 className="w-full"
                 color={"foreground"}

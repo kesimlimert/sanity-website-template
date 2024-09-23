@@ -1,6 +1,9 @@
+"use client";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { urlForImage } from "@/sanity/lib/image";
 import { Image } from "@nextui-org/react";
+import { useNavbarStore } from "@/lib/store";
+import { useEffect } from "react";
 
 type Props = {
   data: any;
@@ -28,6 +31,10 @@ const components: PortableTextComponents = {
 };
 
 export function AboutUsContent({ data }: Props) {
+  const { setActiveItem } = useNavbarStore();
+  useEffect(() => {
+    setActiveItem(data?.slug.current);
+  }, [setActiveItem, data?.slug]);
   return (
     <>
       <div className="container max-w-5xl px-4 mx-auto my-16">

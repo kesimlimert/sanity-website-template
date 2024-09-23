@@ -1,6 +1,9 @@
+"use client";
 import { Image } from "@nextui-org/react";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { urlForImage } from "@/sanity/lib/image";
+import { useNavbarStore } from "@/lib/store";
+import { useEffect } from "react";
 
 type Props = {
   data: any;
@@ -28,6 +31,11 @@ const components: PortableTextComponents = {
 };
 
 export function ServicesContent({ data }: Props) {
+  const { setActiveItem } = useNavbarStore();
+  useEffect(() => {
+    setActiveItem(data?.slug.current);
+  }, [setActiveItem, data?.slug]);
+
   const getCategoryColor = (color: string) => {
     const colorMap: { [key: string]: string } = {
       green: 'bg-green-400',
@@ -37,6 +45,7 @@ export function ServicesContent({ data }: Props) {
     };
     return colorMap[color] || 'bg-gray-200';
   };
+
   return (
     <>
       {data && (
