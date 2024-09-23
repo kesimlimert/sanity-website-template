@@ -8,6 +8,7 @@ import { IconBrandYoutube } from "@tabler/icons-react";
 import { IconBrandInstagram } from "@tabler/icons-react";
 import { IconBrandX } from "@tabler/icons-react";
 import { IconBrandFacebook } from "@tabler/icons-react";
+import { IconHome } from '@tabler/icons-react';
 
 type SocialMediaItem = {
   url: string;
@@ -35,6 +36,7 @@ type Settings = {
   logoalt: Image;
   email: string;
   phone: string;
+  address: string;
   logo: Image;
   _rev: string;
   _type: "settings";
@@ -110,6 +112,12 @@ export function Footer({ settings, footer }: Props) {
                 <IconPhone stroke={2} />
                 <p className="text-sm hover:underline">
                   <Link href={`tel:${settings.phone}`}>{settings.phone}</Link>
+                </p>
+              </div>
+              <div className="flex gap-1 items-center">
+                <IconHome stroke={2} />
+                <p className="text-sm hover:underline">
+                  <p>{settings.address}</p>
                 </p>
               </div>
             </div>

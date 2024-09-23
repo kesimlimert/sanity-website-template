@@ -104,6 +104,12 @@ export default defineType({
     }),
 
     defineField({
+      name: "address",
+      type: "string",
+      title: "Address"
+    }),
+
+    defineField({
       name: "social",
       type: "array",
       title: "Social Links",
