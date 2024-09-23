@@ -28,16 +28,15 @@ const components: PortableTextComponents = {
 };
 
 export function AboutUsContent({ data }: Props) {
-  console.log(data);
   return (
     <>
       <div className="container max-w-5xl px-4 mx-auto my-16">
         <h1 className="text-4xl font-bold text-center">{data?.title}</h1>
         <p className="text-center my-4">{data?.paragraphs}</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 my-16">
+        <div className="flex justify-center items-center flex-1 flex-col flex-wrap md:flex-row gap-8 my-16">
           {data?.team.map((member: any) => (
             <div
-              className="w-full flex flex-col text-center items-center justify-between h-full"
+              className="flex flex-col text-center items-center justify-between h-full"
               key={member.name}
             >
               <div>
