@@ -116,9 +116,9 @@ export function Footer({ settings, footer }: Props) {
               </div>
               <div className="flex gap-1 items-center">
                 <IconHome stroke={2} />
-                <p className="text-sm hover:underline">
+                <div className="text-sm hover:underline">
                   <p>{settings.address}</p>
-                </p>
+                </div>
               </div>
             </div>
             <div className="w-full flex items-center py-4 justify-center">
