@@ -49,12 +49,12 @@ export default async function Layout({
   const navbarMenu = await getNavbarMenu();
   const footer = await getFooter();
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Header logo={settings.logo} servicesMenu={servicesMenu} navbarMenu={navbarMenu}  />
 
-      <div>{children}</div>
+      <main className="flex-grow">{children}</main>
 
       <Footer settings={settings} footer={footer} />
-    </>
+    </div>
   );
 }
