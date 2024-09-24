@@ -44,8 +44,15 @@ To run project successfully on local follow steps below.
 Add file named `.env.local` on root level of the project.
 
 ```bash
-NEXT_PUBLIC_SANITY_PROJECT_ID=SANITY_PROJECT_ID
+# get from home screen of sanity project dashboard
+NEXT_PUBLIC_SANITY_PROJECT_ID=SANITY_PROJECT_ID 
 NEXT_PUBLIC_SANITY_DATASET="production"
+# Provide gmail address for nodemail
+SMTP_MAIL="EMAIL_ADDRESS"
+# turn on 2-step verification on gmail then visit  https://myaccount.google.com/apppasswords and create app password
+SMTP_PASSWORD="GMAIL_APP_PASSWORD"
+EMAIL_TO="EMAIL_ADDRESS"
+
 ```
 
 ### Running project 
