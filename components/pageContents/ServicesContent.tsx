@@ -67,7 +67,7 @@ export function ServicesContent({ data }: Props) {
                 className={`${getCategoryColor(category.color)} opacity-80 rounded-full py-1 px-2`}
                 key={category.slug}
               >
-                <p className="text-xs text-white mt-1 font-bold">{category.title}</p>
+                <p className="text-xs text-white mt-2 font-bold">{category.title}</p>
               </div>
             ))}
           </div>
