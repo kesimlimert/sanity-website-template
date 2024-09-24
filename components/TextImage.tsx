@@ -1,5 +1,5 @@
 import { urlForImage } from "@/sanity/lib/image";
-import { Image } from "@nextui-org/react";
+import Image from "next/image";
 import { ContentTextBlock } from "./ContentTextBlock";
 import { Button } from "@nextui-org/react";
 import { IconCircleCheck } from "@tabler/icons-react";
@@ -51,7 +51,6 @@ export function TextImage({ data }: Props) {
       >
         <div className="flex-1">
           <Image
-            className=""
             src={src}
             width={width}
             height={height}
