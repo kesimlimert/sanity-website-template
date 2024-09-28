@@ -1,4 +1,5 @@
 // app/page.tsx
+"use client";
 import { BlockRenderer } from "@/components/BlockRenderer";
 import { getHomepage } from "@/sanity/lib/client";
 

@@ -137,7 +137,7 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
       </NavbarContent>
       <NavbarMenu>
         {servicesMenu?.map((item: any, index: number) => (
-          <NavbarMenuItem key={index} color="secondary" isActive={activeItem === item.slug}>
+          <NavbarMenuItem key={index} isActive={activeItem === item.slug}>
             <Link
               className="w-full"
               color={"foreground"}
@@ -150,7 +150,7 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
         ))}
         {navbarMenu &&
           navbarItems.map((item: any, index: number) => (
-            <NavbarMenuItem key={index} color="secondary" isActive={activeItem === item.slug}>
+            <NavbarMenuItem key={index} isActive={activeItem === item.slug}>
               <Link
                 className="w-full"
                 color={"foreground"}

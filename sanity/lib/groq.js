@@ -294,10 +294,7 @@ export const contentbyslugquery = groq`
   team[]->{
     name,
     image,
-    bio[] {
-      ...,
-      children[]
-    }
+    bio
   },
    _type == "page" => {
       ...,
