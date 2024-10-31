@@ -41,9 +41,9 @@ export function PostList({ data }: Props) {
     <div className="flex gap-4 max-w-5xl justify-center sm:justify-start px-4 flex-wrap mx-auto my-10">
       {data?.postListReferences?.map((post: any) => (
         <Link href={post.slug} key={post.slug}>
-          <Card className="w-80 h-[380px] hover:scale-105 transition-all duration-500 cursor-pointer" isPressable>
+          <Card className="w-80 h-[380px] hover:scale-105 transition-all duration-500 cursor-pointer bg-danger" isPressable>
             <CardHeader className="my-1">
-              <p className="text-sm font-bold">{post.title}</p>
+              <p className="text-sm font-bold text-secondary">{post.title}</p>
             </CardHeader>
             <CardBody className="p-0">
               <Image
@@ -53,7 +53,7 @@ export function PostList({ data }: Props) {
                 height={300}
                 className="w-full h-48 object-cover"
               />
-            <p className="text-sm line-clamp-3 px-2 py-2 text-black">{post.excerpt}</p>
+            <p className="text-sm line-clamp-3 px-2 py-2 text-secondary">{post.excerpt}</p>
             </CardBody>
             <CardFooter className="mt-4">
               {post.categories.map((category: any) => (

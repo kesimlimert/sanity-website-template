@@ -25,13 +25,13 @@ export function TestimonialList({ data }: Props) {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {data?.testimonialReferences?.map((testimonial: any, index: number) => (
             <div
-              className="flex flex-col justify-between bg-gray-100 rounded-xl p-4 h-full"
+              className="flex flex-col justify-between bg-secondary bg-opacity-30 rounded-xl p-4 h-full"
               key={index}
             >
-              <p className="mb-4">{testimonial.comment}</p>
+              <p className="mb-4 text-secondary">{testimonial.comment}</p>
               <div className="mt-auto">
-                <p className="font-bold">{testimonial.authorName}</p>
-                <p className="text-gray-700 text-sm">{testimonial.authorJobTitle}</p>
+                <p className="font-bold text-secondary">{testimonial.authorName}</p>
+                <p className="text-secondary opacity-70 text-sm">{testimonial.authorJobTitle}</p>
               </div>
             </div>
           ))}

@@ -87,7 +87,7 @@ export function Footer({ settings, footer }: Props) {
   return (
     <>
       {footer && settings && (
-        <div className="max-w-6xl w-full mx-auto px-8 rounded-t-xl text-white bg-gradient-to-tr pt-10 from-violet-600 via-violet-600 to-indigo-600">
+        <div className="w-full mx-auto px-8 text-secondary bg-gradient-to-tr pt-10 bg-danger">
           <div className="flex items-center gap-4 flex-col">
             <div className="flex gap-2 items-center">
               <Image
@@ -122,7 +122,7 @@ export function Footer({ settings, footer }: Props) {
               </div>
             </div>
             <div className="w-full flex items-center py-4 justify-center">
-              <div className="w-full border-t border-white"></div>
+              <div className="w-full border-t border-secondary"></div>
               <div className="flex gap-4 mx-4">
                 {settings.social.map((social, index) => (
                   <Link
@@ -135,7 +135,7 @@ export function Footer({ settings, footer }: Props) {
                   </Link>
                 ))}
               </div>
-              <div className="w-full border-t border-white"></div>
+              <div className="w-full border-t border-secondary"></div>
             </div>
             <div className="flex gap-4">
               {footer.navigation.map((item, index) => (

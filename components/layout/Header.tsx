@@ -53,6 +53,7 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="text-secondary"
         />
       </NavbarContent>
 
@@ -102,8 +103,9 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
                   endContent={<IconChevronDown stroke={2} />}
                   radius="sm"
                   variant="light"
+                  color="secondary"
                 >
-                  <p className="text-medium">{navbarMenu?.title}</p>
+                  <p className="text-medium text-secondary">{navbarMenu?.title}</p>
                 </Button>
               </DropdownTrigger>
             </NavbarItem>
@@ -119,6 +121,7 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
                     onClick={() => handleNavigation(item.slug)}
                     key={index}
                     color="secondary"
+                    className="hover:text-white data-[hover=true]:text-white"
                   >
                     {item.title}
                   </DropdownItem>
@@ -129,7 +132,7 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
         {navbarMenu &&
           navbarItems.map((item: any, index: number) => (
             <NavbarItem key={index} isActive={activeItem === item.slug}>
-              <Link color="foreground" href={"/" + item.slug}>
+              <Link color="secondary" href={"/" + item.slug}>
                 {item.title}
               </Link>
             </NavbarItem>
@@ -140,7 +143,7 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
           <NavbarMenuItem key={index} isActive={activeItem === item.slug}>
             <Link
               className="w-full"
-              color={"foreground"}
+              color="secondary"
               href={"/" + item.slug}
               size="lg"
             >
@@ -153,7 +156,7 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
             <NavbarMenuItem key={index} isActive={activeItem === item.slug}>
               <Link
                 className="w-full"
-                color={"foreground"}
+                color="secondary"
                 href={"/" + item.slug}
                 size="lg"
               >

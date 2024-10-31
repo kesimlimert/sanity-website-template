@@ -160,7 +160,7 @@ export function ContactUsContent({ data }: Props) {
               errorMessage={errors.message}
               className="w-full"
             />
-            <Button color="secondary" type="submit" disabled={!isFormValid}>
+            <Button color="secondary" className="text-white" type="submit" disabled={!isFormValid}>
               Gönder
             </Button>
           </form>

@@ -166,7 +166,7 @@ export function VideoReferences({ data }: Props) {
         {data?.videoSource && (
           <Card
             isBlurred
-            className="border-none bg-background/60 mx-4 sm:mx-0 dark:bg-default-100/50 w-full max-w-3xl"
+            className="border-none bg-danger mx-4 sm:mx-0 dark:bg-danger w-full max-w-3xl"
             shadow="sm"
           >
             <CardBody>
@@ -177,11 +177,11 @@ export function VideoReferences({ data }: Props) {
 
                 <div className="flex flex-col col-span-6 md:col-span-8">
                   <div className="flex justify-between items-start">
-                    <div className="flex flex-col gap-0">
+                    <div className="flex flex-col text-secondary gap-0">
                       <h1 className="text-large font-medium mt-2">
                         {data?.title}
                       </h1>
-                      <p className="text-small text-foreground/80">
+                      <p className="text-small text-secondary text-foreground/80">
                         {data?.description}
                       </p>
                     </div>
@@ -193,17 +193,17 @@ export function VideoReferences({ data }: Props) {
                       classNames={{
                         track: "bg-default-500/30",
                         thumb:
-                          "w-2 h-2 after:w-2 after:h-2 after:bg-foreground",
+                          "w-2 h-2 after:w-2 after:h-2 after:bg-secondary",
                       }}
-                      color="foreground"
+                      color="secondary"
                       value={currentTime}
                       onChange={handleSliderChange}
                       maxValue={duration}
                       size="sm"
                     />
-                    <div className="flex justify-between">
+                    <div className="flex text-secondary justify-between">
                       <p className="text-small">{formatTime(currentTime)}</p>
-                      <p className="text-small text-foreground/50">
+                      <p className="text-small">
                         {formatTime(duration)}
                       </p>
                     </div>
@@ -217,9 +217,9 @@ export function VideoReferences({ data }: Props) {
                       onClick={isPlaying ? handlePause : handlePlay}
                     >
                       {isPlaying ? (
-                        <IconPlayerPause stroke={2} />
+                        <IconPlayerPause color="#A20100" stroke={2} />
                       ) : (
-                        <IconPlayerPlay stroke={2} />
+                        <IconPlayerPlay color="#A20100" stroke={2} />
                       )}
                     </Button>
                     <Popover placement="top">
@@ -230,7 +230,7 @@ export function VideoReferences({ data }: Props) {
                           radius="full"
                           variant="light"
                         >
-                          <IconShare stroke={2} />
+                          <IconShare color="#A20100" stroke={2} />
                         </Button>
                       </PopoverTrigger>
                       <PopoverContent>
@@ -250,7 +250,7 @@ export function VideoReferences({ data }: Props) {
                               size="sm"
                               onClick={handleCopyLink}
                             >
-                              <IconCopy size={16} />
+                              <IconCopy color="#A20100" size={16} />
                             </Button>
                           </div>
                           <Button className="mt-2 w-full" onClick={handleShare}>

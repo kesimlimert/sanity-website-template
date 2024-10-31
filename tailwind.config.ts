@@ -10,6 +10,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        danger: "#FDF1F1",
+        secondary: "#A20100",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -18,6 +22,35 @@ const config: Config = {
     },
   },
   darkMode: "class",
-  plugins: [nextui()]
+  plugins: [nextui({
+    themes: {
+      light: {
+        colors: {
+          secondary: {
+            DEFAULT: "#A20100",
+            foreground: "#000000",
+          },
+          danger: {
+            DEFAULT: "#FDF1F1",
+            foreground: "#000000",
+          },
+          // ... other colors
+        },
+      },
+      dark: {
+        colors: {
+          secondary: {
+            DEFAULT: "#A20100",
+            foreground: "#000000",
+          },
+          danger: {
+            DEFAULT: "#FDF1F1",
+            foreground: "#000000",
+          },
+          // ... other colors
+        },
+      },
+    },
+  }),]
 };
 export default config;

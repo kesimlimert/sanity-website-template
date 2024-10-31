@@ -77,7 +77,7 @@ export function TextImage({ data }: Props) {
               {data?.list?.map((item: any, index: number) => (
                 <div key={index} className="flex gap-2 pt-4">
                   {data?.showIcons && (
-                    <IconCircleCheck size={24} color="#7e22ce" stroke={2} />
+                    <IconCircleCheck size={24} color="#A20100" stroke={2} />
                   )}
                   <p>{item}</p>
                 </div>
@@ -87,7 +87,7 @@ export function TextImage({ data }: Props) {
           {data?.displayButton && (
             <div className="mt-8">
               <Link href={"/" + data?.button?.buttonLink.slug}>
-                <Button color="secondary" size={fullWidth ? "lg" : "md"}>
+                <Button className="text-white" color="secondary" size={fullWidth ? "lg" : "md"}>
                   {data?.button?.buttonText}
                 </Button>
               </Link>
