@@ -87,7 +87,7 @@ export function Footer({ settings, footer }: Props) {
   return (
     <>
       {footer && settings && (
-        <div className="w-full mx-auto px-8 text-secondary bg-gradient-to-tr pt-10 bg-danger">
+        <div className="w-full mx-auto px-8 text-secondary bg-gradient-to-tr pt-10 bg-primary">
           <div className="flex items-center gap-4 flex-col">
             <div className="flex gap-2 items-center">
               <Image

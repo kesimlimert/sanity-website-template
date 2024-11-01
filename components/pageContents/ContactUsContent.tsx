@@ -182,7 +182,7 @@ export function ContactUsContent({ data }: Props) {
                 </p>
               </ModalBody>
               <ModalFooter>
-                <Button color="success" onPress={onClose}>
+                <Button color="success" className="text-white" onPress={onClose}>
                   Oley!
                 </Button>
               </ModalFooter>

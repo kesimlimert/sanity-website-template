@@ -11,7 +11,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        danger: "#FDF1F1",
+        primary: "#FDF1F1",
         secondary: "#A20100",
       },
       backgroundImage: {
@@ -30,7 +30,7 @@ const config: Config = {
             DEFAULT: "#A20100",
             foreground: "#000000",
           },
-          danger: {
+          primary: {
             DEFAULT: "#FDF1F1",
             foreground: "#000000",
           },
@@ -43,7 +43,7 @@ const config: Config = {
             DEFAULT: "#A20100",
             foreground: "#000000",
           },
-          danger: {
+          primary: {
             DEFAULT: "#FDF1F1",
             foreground: "#000000",
           },

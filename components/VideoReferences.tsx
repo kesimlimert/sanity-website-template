@@ -166,7 +166,7 @@ export function VideoReferences({ data }: Props) {
         {data?.videoSource && (
           <Card
             isBlurred
-            className="border-none bg-danger mx-4 sm:mx-0 dark:bg-danger w-full max-w-3xl"
+            className="border-none bg-primary mx-4 sm:mx-0 dark:bg-primary w-full max-w-3xl"
             shadow="sm"
           >
             <CardBody>

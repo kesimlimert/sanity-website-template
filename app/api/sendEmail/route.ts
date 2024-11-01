@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     from: process.env.SMTP_MAIL,
     to: process.env.EMAIL_TO,
     subject: subject,
-    text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`,
+    text: `İsim: ${name}\nEmail: ${email}\nTelefon: ${phone}\nKonu: ${subject}\nMesaj: ${message}`,
   };
 
   try {
