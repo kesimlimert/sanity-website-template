@@ -3,6 +3,7 @@ import { urlForImage } from "@/sanity/lib/image";
 import Params from "next/router";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { Analytics } from "@vercel/analytics/react"
 
 async function sharedMetaData(params: any) {
   const settings = await getSettings();
@@ -54,6 +55,7 @@ export default async function Layout({
 
       <main className="flex-grow">{children}</main>
 
+      <Analytics />
       <Footer settings={settings} footer={footer} />
     </div>
   );
