@@ -138,9 +138,21 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
             </NavbarItem>
           ))}
       </NavbarContent>
-      <NavbarMenu>
+      <NavbarMenu className="pt-6">
+        {!navbarMenu?.hideDropdown && (
+          <NavbarMenuItem className="font-semibold">
+            {navbarMenu?.title}
+          </NavbarMenuItem>
+        )}
         {servicesMenu?.map((item: any, index: number) => (
-          <NavbarMenuItem key={index} isActive={activeItem === item.slug}>
+          <NavbarMenuItem 
+            key={index} 
+            isActive={activeItem === item.slug}
+            onClick={() => {
+              setIsMenuOpen(false);
+              handleNavigation(item.slug);
+            }}
+          >
             <Link
               className="w-full"
               color="secondary"
@@ -153,7 +165,11 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
         ))}
         {navbarMenu &&
           navbarItems.map((item: any, index: number) => (
-            <NavbarMenuItem key={index} isActive={activeItem === item.slug}>
+            <NavbarMenuItem 
+              key={index} 
+              isActive={activeItem === item.slug}
+              onClick={() => setIsMenuOpen(false)}
+            >
               <Link
                 className="w-full"
                 color="secondary"
