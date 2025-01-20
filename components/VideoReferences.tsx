@@ -143,6 +143,24 @@ export function VideoReferences({ data }: Props) {
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
+  // Add touch handling for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    const progressBar = e.currentTarget;
+    const rect = progressBar.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const width = rect.width;
+    const percentage = x / width;
+    const newTime = duration * percentage;
+    player?.seekTo(newTime);
+    setCurrentTime(newTime);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    e.preventDefault();
+    handleTouchStart(e);
+  };
+
   return (
     <>
       {data?.displayContentTextBlock && (
@@ -157,7 +175,12 @@ export function VideoReferences({ data }: Props) {
                 <div className="relative w-full">
                   <div 
                     ref={playerRef} 
-                    className="w-full rounded-lg overflow-hidden pointer-events-none aspect-video"
+                    className="w-full rounded-lg overflow-hidden aspect-video"
+                  />
+                  {/* Add invisible touch layer */}
+                  <div 
+                    className="absolute inset-0 z-10"
+                    onClick={isPlaying ? handlePause : handlePlay}
                   />
                 </div>
 
@@ -171,16 +194,21 @@ export function VideoReferences({ data }: Props) {
                   </p>
                 </div>
 
-                {/* Progress Bar */}
+                {/* Progress Bar - Updated for mobile */}
                 <div className="flex flex-col gap-1">
-                  <div className="relative w-full h-1 bg-[#D3CACD] rounded">
+                  <div 
+                    className="relative w-full h-1 bg-[#D3CACD] rounded touch-none"
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                  >
                     <input
                       type="range"
                       min="0"
                       max={duration}
                       value={currentTime}
                       onChange={handleSliderChange}
-                      className="absolute w-full h-full opacity-0 cursor-pointer"
+                      className="absolute w-full h-full opacity-0 cursor-pointer touch-none"
+                      style={{ WebkitAppearance: 'none' }}
                     />
                     <div 
                       className="absolute h-full bg-[#A20100] rounded"
@@ -193,30 +221,30 @@ export function VideoReferences({ data }: Props) {
                   </div>
                 </div>
 
-                {/* Controls */}
+                {/* Controls - Updated for better mobile touch */}
                 <div className="flex items-center justify-center gap-4">
                   <button
                     onClick={isPlaying ? handlePause : handlePlay}
-                    className="p-2 rounded-full hover:bg-[#E3B2B2] transition-colors"
+                    className="p-2 rounded-full hover:bg-[#E3B2B2] transition-colors touch-none"
                   >
                     {isPlaying ? (
-                      <IconPlayerPause className="text-[#A20100]" size={24} stroke={2} />
+                      <IconPlayerPause className="text-[#A20100]" size={28} stroke={2} />
                     ) : (
-                      <IconPlayerPlay className="text-[#A20100]" size={24} stroke={2} />
+                      <IconPlayerPlay className="text-[#A20100]" size={28} stroke={2} />
                     )}
                   </button>
 
-                  {/* Share Button and Popover */}
+                  {/* Share Button - Updated for mobile */}
                   <div className="relative">
                     <button
                       onClick={() => setShowSharePopover(!showSharePopover)}
-                      className="p-2 rounded-full hover:bg-[#E3B2B2] transition-colors"
+                      className="p-2 rounded-full hover:bg-[#E3B2B2] transition-colors touch-none"
                     >
-                      <IconShare className="text-[#A20100]" size={24} stroke={2} />
+                      <IconShare className="text-[#A20100]" size={28} stroke={2} />
                     </button>
                     
                     {showSharePopover && (
-                      <div className="absolute bottom-full mb-2 right-0 w-72 bg-white rounded-lg shadow-lg p-4">
+                      <div className="absolute bottom-full mb-2 right-0 w-72 bg-white rounded-lg shadow-lg p-4 z-50">
                         <h3 className="text-sm font-bold mb-2">Bu vıdeoyu paylaş</h3>
                         <div className="flex gap-2">
                           <input
