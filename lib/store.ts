@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
-interface NavbarState {
+interface NavbarStore {
   activeItem: string;
   setActiveItem: (item: string) => void;
 }
 
-export const useNavbarStore = create<NavbarState>((set) => ({
+export const useNavbarStore = create<NavbarStore>((set) => ({
   activeItem: '',
   setActiveItem: (item) => set({ activeItem: item }),
 }));

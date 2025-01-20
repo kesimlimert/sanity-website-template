@@ -1,25 +1,12 @@
 "use client";
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  Link,
-  Button,
-  NavbarMenu,
-  NavbarMenuItem,
-  NavbarMenuToggle,
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-} from "@nextui-org/react";
+import Link from "next/link";
 import Image from "next/image";
 import { urlForImage } from "@/sanity/lib/image";
-import { useState } from "react";
-import { IconChevronDown } from "@tabler/icons-react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { IconChevronDown, IconMenu2, IconX } from "@tabler/icons-react";
+import { useRouter, usePathname } from "next/navigation";
 import { useNavbarStore } from "@/lib/store";
+
 type Props = {
   logo?: string;
   servicesMenu: any;
@@ -28,9 +15,19 @@ type Props = {
 
 export function Header({ logo, servicesMenu, navbarMenu }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
   const navbarItems = navbarMenu.pageReferences;
-  const { activeItem } = useNavbarStore();
+  const { activeItem, setActiveItem } = useNavbarStore();
+  
+  // Reset activeItem when on homepage
+  useEffect(() => {
+    if (pathname === '/') {
+      setActiveItem('');
+    }
+  }, [pathname, setActiveItem]);
+
   const { src, width, height, alt } = urlForImage(logo) ?? {
     src: "",
     width: 0,
@@ -40,147 +37,119 @@ export function Header({ logo, servicesMenu, navbarMenu }: Props) {
 
   const handleNavigation = (slug: string) => {
     router.push("/" + slug);
+    setIsMenuOpen(false);
   };
 
   return (
-    <Navbar
-      isBordered
-      onMenuOpenChange={setIsMenuOpen}
-      isBlurred={false}
-      shouldHideOnScroll
-      maxWidth="lg"
-    >
-      <NavbarContent className="sm:hidden" justify="start">
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="text-secondary"
-        />
-      </NavbarContent>
-
-      <NavbarContent className="sm:hidden" justify="center">
-        <NavbarBrand>
-          {logo && (
-            <div className="w-full h-auto max-w-20">
-              <Link href="/">
+    <div className="relative bg-white border-b">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Link href="/">
+              {logo && (
                 <Image
                   src={src}
                   width={width}
                   height={height}
                   alt={alt}
                   priority={true}
-                  sizes="(max-width: 640px) 100vw, 200px"
+                  className="w-20 h-auto"
                 />
-              </Link>
-            </div>
-          )}
-        </NavbarBrand>
-      </NavbarContent>
-
-      <NavbarContent className="hidden sm:flex gap-4" justify="end">
-        <NavbarBrand>
-          {logo && (
-            <div className="w-full h-auto max-w-20">
-              <Link href="/">
-                <Image
-                  src={src}
-                  width={width}
-                  height={height}
-                  alt={alt}
-                  priority={true}
-                  sizes="(max-width: 640px) 100vw, 200px"
-                />
-              </Link>
-            </div>
-          )}
-        </NavbarBrand>
-        {!navbarMenu?.hideDropdown && (
-          <Dropdown>
-            <NavbarItem>
-              <DropdownTrigger>
-                <Button
-                  disableRipple
-                  className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-                  endContent={<IconChevronDown stroke={2} />}
-                  radius="sm"
-                  variant="light"
-                  color="secondary"
-                >
-                  <p className="text-medium text-secondary">{navbarMenu?.title}</p>
-                </Button>
-              </DropdownTrigger>
-            </NavbarItem>
-            <DropdownMenu
-              className="w-[340px]"
-              itemClasses={{
-                base: "gap-4",
-              }}
-            >
-              {servicesMenu &&
-                servicesMenu.map((item: any, index: number) => (
-                  <DropdownItem
-                    onClick={() => handleNavigation(item.slug)}
-                    key={index}
-                    color="secondary"
-                    className="hover:text-white data-[hover=true]:text-white"
-                  >
-                    {item.title}
-                  </DropdownItem>
-                ))}
-            </DropdownMenu>
-          </Dropdown>
-        )}
-        {navbarMenu &&
-          navbarItems.map((item: any, index: number) => (
-            <NavbarItem key={index} isActive={activeItem === item.slug}>
-              <Link color="secondary" href={"/" + item.slug}>
-                {item.title}
-              </Link>
-            </NavbarItem>
-          ))}
-      </NavbarContent>
-      <NavbarMenu className="pt-6">
-        {!navbarMenu?.hideDropdown && (
-          <NavbarMenuItem className="font-semibold">
-            {navbarMenu?.title}
-          </NavbarMenuItem>
-        )}
-        {servicesMenu?.map((item: any, index: number) => (
-          <NavbarMenuItem 
-            key={index} 
-            isActive={activeItem === item.slug}
-            onClick={() => {
-              setIsMenuOpen(false);
-              handleNavigation(item.slug);
-            }}
-          >
-            <Link
-              className="w-full"
-              color="secondary"
-              href={"/" + item.slug}
-              size="lg"
-            >
-              {item.title}
+              )}
             </Link>
-          </NavbarMenuItem>
-        ))}
-        {navbarMenu &&
-          navbarItems.map((item: any, index: number) => (
-            <NavbarMenuItem 
-              key={index} 
-              isActive={activeItem === item.slug}
-              onClick={() => setIsMenuOpen(false)}
-            >
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden sm:flex sm:items-center sm:space-x-8">
+            {!navbarMenu?.hideDropdown && (
+              <div className="relative">
+                <button
+                  onClick={() => setIsServicesOpen(!isServicesOpen)}
+                  className="flex items-center space-x-1 text-[#A20100] hover:text-[#A20100]/80"
+                >
+                  <span>{navbarMenu?.title}</span>
+                  <IconChevronDown size={20} className="text-[#A20100]" />
+                </button>
+                {isServicesOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                    {servicesMenu?.map((item: any, index: number) => (
+                      <Link
+                        key={index}
+                        href={`/${item.slug}`}
+                        className="block px-4 py-2 text-sm text-[#A20100] hover:bg-gray-100"
+                        onClick={() => setIsServicesOpen(false)}
+                      >
+                        {item.title}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+            {navbarItems?.map((item: any, index: number) => (
               <Link
-                className="w-full"
-                color="secondary"
-                href={"/" + item.slug}
-                size="lg"
+                key={index}
+                href={`/${item.slug}`}
+                className={`text-[#A20100] hover:text-[#A20100]/80 ${
+                  activeItem === item.slug ? "font-semibold" : ""
+                }`}
               >
                 {item.title}
               </Link>
-            </NavbarMenuItem>
-          ))}
-      </NavbarMenu>
-    </Navbar>
+            ))}
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="sm:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="inline-flex items-center justify-center p-2 rounded-md text-[#A20100] hover:text-[#A20100]/80 hover:bg-gray-100"
+            >
+              {isMenuOpen ? (
+                <IconX className="h-6 w-6" />
+              ) : (
+                <IconMenu2 className="h-6 w-6" />
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      {isMenuOpen && (
+        <div className="sm:hidden">
+          <div className="px-2 pt-2 pb-3 space-y-1">
+            {!navbarMenu?.hideDropdown && (
+              <>
+                <div className="px-3 py-2 font-semibold text-[#A20100]">{navbarMenu?.title}</div>
+                {servicesMenu?.map((item: any, index: number) => (
+                  <Link
+                    key={index}
+                    href={`/${item.slug}`}
+                    className="block px-3 py-2 text-base font-medium text-[#A20100] hover:text-[#A20100]/80 hover:bg-gray-50 rounded-md"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.title}
+                  </Link>
+                ))}
+              </>
+            )}
+            {navbarItems?.map((item: any, index: number) => (
+              <Link
+                key={index}
+                href={`/${item.slug}`}
+                className={`block px-3 py-2 text-base font-medium text-[#A20100] hover:text-[#A20100]/80 hover:bg-gray-50 rounded-md ${
+                  activeItem === item.slug ? "bg-gray-50" : ""
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.title}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
   );
 }

@@ -2,22 +2,7 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import { ContentTextBlock } from "./ContentTextBlock";
-import {
-  Button,
-  Card,
-  CardBody,
-  Input,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-  Slider,
-} from "@nextui-org/react";
-import {
-  IconPlayerPlay,
-  IconPlayerPause,
-  IconShare,
-  IconCopy,
-} from "@tabler/icons-react";
+import { IconPlayerPlay, IconPlayerPause, IconShare, IconCopy } from "@tabler/icons-react";
 
 type Props = {
   data: {
@@ -42,6 +27,7 @@ export function VideoReferences({ data }: Props) {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showSharePopover, setShowSharePopover] = useState(false);
   const timeUpdateIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const [shareUrl, setShareUrl] = useState("");
 
@@ -145,8 +131,8 @@ export function VideoReferences({ data }: Props) {
       .catch(console.error);
   };
 
-  const handleSliderChange = (value: number | number[]) => {
-    const newTime = Array.isArray(value) ? value[0] : value;
+  const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTime = parseFloat(e.target.value);
     player?.seekTo(newTime);
     setCurrentTime(newTime);
   };
@@ -164,106 +150,101 @@ export function VideoReferences({ data }: Props) {
       )}
       <div className="container max-w-3xl flex justify-center items-center m-auto my-16">
         {data?.videoSource && (
-          <Card
-            isBlurred
-            className="border-none bg-primary mx-4 sm:mx-0 dark:bg-primary w-full max-w-3xl"
-            shadow="sm"
-          >
-            <CardBody>
+          <div className="w-full max-w-3xl bg-[#FDF1F1] shadow-md rounded-lg overflow-hidden mx-4 sm:mx-0">
+            <div className="p-6">
               <div className="flex flex-col gap-4">
-                <div className="relative col-span-6 md:col-span-4">
-                  <div ref={playerRef} className="w-full rounded-lg overflow-hidden pointer-events-none aspect-video" />
+                {/* Video Container */}
+                <div className="relative w-full">
+                  <div 
+                    ref={playerRef} 
+                    className="w-full rounded-lg overflow-hidden pointer-events-none aspect-video"
+                  />
                 </div>
 
-                <div className="flex flex-col col-span-6 md:col-span-8">
-                  <div className="flex justify-between items-start">
-                    <div className="flex flex-col text-secondary gap-0">
-                      <h1 className="text-large font-medium mt-2">
-                        {data?.title}
-                      </h1>
-                      <p className="text-small text-secondary text-foreground/80">
-                        {data?.description}
-                      </p>
-                    </div>
-                  </div>
+                {/* Title and Description */}
+                <div className="flex flex-col">
+                  <h1 className="text-lg font-medium text-[#A20100] mt-2">
+                    {data?.title}
+                  </h1>
+                  <p className="text-sm text-[#A20100]/80">
+                    {data?.description}
+                  </p>
+                </div>
 
-                  <div className="flex flex-col mt-3 gap-1">
-                    <Slider
-                      aria-label="Video progress"
-                      classNames={{
-                        track: "bg-default-500/30",
-                        thumb:
-                          "w-2 h-2 after:w-2 after:h-2 after:bg-secondary",
-                      }}
-                      color="secondary"
+                {/* Progress Bar */}
+                <div className="flex flex-col gap-1">
+                  <div className="relative w-full h-1 bg-[#D3CACD] rounded">
+                    <input
+                      type="range"
+                      min="0"
+                      max={duration}
                       value={currentTime}
                       onChange={handleSliderChange}
-                      maxValue={duration}
-                      size="sm"
+                      className="absolute w-full h-full opacity-0 cursor-pointer"
                     />
-                    <div className="flex text-secondary justify-between">
-                      <p className="text-small">{formatTime(currentTime)}</p>
-                      <p className="text-small">
-                        {formatTime(duration)}
-                      </p>
-                    </div>
+                    <div 
+                      className="absolute h-full bg-[#A20100] rounded"
+                      style={{ width: `${(currentTime / duration) * 100}%` }}
+                    />
                   </div>
-                  <div className="flex w-full items-center justify-center">
-                    <Button
-                      isIconOnly
-                      className="w-auto p-2 h-auto data-[hover]:bg-foreground/10"
-                      radius="full"
-                      variant="light"
-                      onClick={isPlaying ? handlePause : handlePlay}
+                  <div className="flex justify-between text-sm text-[#A20100]">
+                    <span>{formatTime(currentTime)}</span>
+                    <span>{formatTime(duration)}</span>
+                  </div>
+                </div>
+
+                {/* Controls */}
+                <div className="flex items-center justify-center gap-4">
+                  <button
+                    onClick={isPlaying ? handlePause : handlePlay}
+                    className="p-2 rounded-full hover:bg-[#E3B2B2] transition-colors"
+                  >
+                    {isPlaying ? (
+                      <IconPlayerPause className="text-[#A20100]" size={24} stroke={2} />
+                    ) : (
+                      <IconPlayerPlay className="text-[#A20100]" size={24} stroke={2} />
+                    )}
+                  </button>
+
+                  {/* Share Button and Popover */}
+                  <div className="relative">
+                    <button
+                      onClick={() => setShowSharePopover(!showSharePopover)}
+                      className="p-2 rounded-full hover:bg-[#E3B2B2] transition-colors"
                     >
-                      {isPlaying ? (
-                        <IconPlayerPause color="#A20100" stroke={2} />
-                      ) : (
-                        <IconPlayerPlay color="#A20100" stroke={2} />
-                      )}
-                    </Button>
-                    <Popover placement="top">
-                      <PopoverTrigger>
-                        <Button
-                          isIconOnly
-                          className="w-auto p-2 h-auto data-[hover]:bg-foreground/10"
-                          radius="full"
-                          variant="light"
-                        >
-                          <IconShare color="#A20100" stroke={2} />
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent>
-                        <div className="px-1 py-2">
-                          <div className="text-small font-bold">
-                            Share this video
-                          </div>
-                          <div className="mt-2 flex items-center">
-                            <Input
-                              size="sm"
-                              value={shareUrl}
-                              readOnly
-                              className="mr-2"
-                            />
-                            <Button
-                              isIconOnly
-                              size="sm"
-                              onClick={handleCopyLink}
-                            >
-                              <IconCopy color="#A20100" size={16} />
-                            </Button>
-                          </div>
-                          <Button className="mt-2 w-full" onClick={handleShare}>
-                            Share
-                          </Button>
+                      <IconShare className="text-[#A20100]" size={24} stroke={2} />
+                    </button>
+                    
+                    {showSharePopover && (
+                      <div className="absolute bottom-full mb-2 right-0 w-72 bg-white rounded-lg shadow-lg p-4">
+                        <h3 className="text-sm font-bold mb-2">Bu vıdeoyu paylaş</h3>
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            value={shareUrl}
+                            readOnly
+                            className="flex-1 px-3 py-1 text-sm border rounded"
+                          />
+                          <button
+                            onClick={handleCopyLink}
+                            className="p-2 rounded hover:bg-[#E3B2B2] transition-colors"
+                          >
+                            <IconCopy className="text-[#A20100]" size={16} />
+                          </button>
                         </div>
-                      </PopoverContent>
-                    </Popover>
+                        <button
+                          onClick={handleShare}
+                          className="mt-2 w-full py-2 bg-[#A20100] text-white rounded hover:bg-[#E3B2B2] hover:text-[#A20100] transition-colors"
+                        >
+                          Paylaş
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
-            </CardBody>
-          </Card>
+            </div>
+          </div>
         )}
       </div>
     </>
